@@ -1,0 +1,39 @@
+# STARTING SKETCH — NOT VERIFIED.
+# Check against current LiteLLM documentation before using. The config schema
+# changes between versions.
+#
+# Intent: always-on local router on the server, with opportunistic escalation
+# to the desktop's 4090 and a final fallback outward.
+
+model_list:
+  # Always available — server, 2080 Ti
+  - model_name: local-router
+    litellm_params:
+      model: ollama/<small-model>
+      api_base: http://localhost:11434
+
+  # Opportunistic — desktop, 4090. Unavailable while gaming.
+  - model_name: local-heavy
+    litellm_params:
+      model: ollama/<large-model>
+      api_base: http://<desktop-host>:11434
+
+  # Final fallback
+  - model_name: remote-frontier
+    litellm_params:
+      model: <provider>/<model>
+      api_key: os.environ/<KEY_VAR>
+
+router_settings:
+  # If the desktop is asleep or gaming, degrade rather than hang.
+  fallbacks:
+    - local-heavy: ["remote-frontier", "local-router"]
+
+  # Keep these tight — a gaming desktop should fail fast, not stall the chain.
+  timeout: 10
+  num_retries: 1
+
+general_settings:
+  # Health checks are what make the fallback chain work.
+  background_health_checks: true
+  health_check_interval: 60

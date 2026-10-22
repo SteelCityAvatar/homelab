@@ -1,0 +1,5 @@
+.DS_Store
+*.swp
+secrets/
+*.env
+.env
