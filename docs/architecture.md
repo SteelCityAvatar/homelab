@@ -7,7 +7,7 @@
 │  NODE A — Desktop        │         │  NODE B — Server         │
 │  Windows 11              │         │  Proxmox VE              │
 │                          │         │                          │
-│  RTX 4090 (24GB)         │◄───────►│  RTX 2080 Ti (11GB)      │
+│  RTX 4090 (24GB)         │◄───────►│  RTX 2070 Super (8GB)      │
 │  13700K / 32GB DDR5      │  LAN    │  GTX 1060 (6GB)          │
 │  9TB game+scratch        │         │  8700K / 32GB DDR4       │
 │                          │         │  ZFS pools               │
@@ -45,7 +45,7 @@ Proxmox VE (bare metal)
 ```
 
 **Why LXC and not VMs for GPU work:** containers share a GPU with the host.
-VM passthrough dedicates the card to one guest, which would lock the 2080 Ti
+VM passthrough dedicates the card to one guest, which would lock the 2070 Super
 away from everything else.
 
 **Why HA in a VM and not LXC:** Home Assistant OS is the officially supported
@@ -75,7 +75,7 @@ offsite / 3-2-1 strategy.
 
 | Node | Model class | Availability | Job |
 |---|---|---|---|
-| Server / 2080 Ti | 7-8B, Q4-Q5 | Always on | Routing, tool selection, classification, HA calls |
+| Server / 2070 Super | 7-8B, Q4 | Always on | Routing, tool selection, classification, HA calls |
 | Server / 1060 | Small / specialized | Always on | Whisper, embeddings for RAG |
 | Desktop / 4090 | 27-32B, Q4 | Opportunistic | Hard reasoning, code generation |
 | External API | Frontier | On demand | Escalation for hard bespoke-code work |
@@ -88,7 +88,7 @@ request
    ▼
 LiteLLM gateway (server, always up)
    │
-   ├── simple? ───────────► local 7-8B on 2080 Ti
+   ├── simple? ───────────► local 7-8B on 2070 Super
    │
    └── hard? ──► health-check desktop endpoint
                     │
@@ -101,7 +101,7 @@ system stops escalating rather than hanging. Degradation, not breakage.
 
 ### Known limits
 
-- 11GB VRAM caps the server at ~7-8B comfortably (14B if squeezed)
+- 8GB VRAM caps the server at ~7-8B at Q4 with modest context; 14B is off the table
 - The two server GPUs **will not pool**. Mismatched generations, mismatched
   memory. Two independent workers, not 17GB.
 - Small models are decent at constrained routing (pick a tool, emit JSON) but

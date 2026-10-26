@@ -6,7 +6,7 @@
 ## Context
 
 The HAF XB EVO is a high-airflow mesh case with no sound dampening. Peak system
-draw is ~600W, nearly all of which ends up as heat in the room. The living room
+draw is ~560W, nearly all of which ends up as heat in the room. The living room
 is also where Node A serves as the home theater PC, so server noise competes
 directly with movie audio. `docs/spec.md` listed three options; a different room
 with an ethernet run was the stated preference.
@@ -18,10 +18,10 @@ Wi-Fi is not an option for the server.
 
 ## Rationale
 
-- **Noise:** HDD seek chatter and a 2080 Ti under load are audible through
+- **Noise:** HDD seek chatter and a 2070 Super under load are audible through
   mesh. Mitigation (grommets, spindown, undervolting) reduces but does not
   remove that noise
-- **Heat:** ~600W peak into a living room is a real problem in an apartment
+- **Heat:** ~560W peak into a living room is a real problem in an apartment
   in summer
 - **Wired only:** a ~5TB migration and ongoing LAN model serving are not
   workable over Wi-Fi
@@ -42,3 +42,6 @@ Wi-Fi is not an option for the server.
 - Living-room noise mitigation (`ROADMAP.md` Phase 4) mostly drops away
 - Ethernet cable length (`bom.md` #19) depends on the chosen room
 - Heat moves to the chosen room — check it isn't a closed closet with no airflow
+
+> **Correction 2026-10-26:** the server GPU is an RTX 2070 Super (8GB, ~215W),
+> not a 2080 Ti (11GB, ~260W). Figures above updated; the decision is unchanged.

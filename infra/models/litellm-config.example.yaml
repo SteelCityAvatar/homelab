@@ -6,7 +6,7 @@
 # to the desktop's 4090 and a final fallback outward.
 
 model_list:
-  # Always available — server, 2080 Ti
+  # Always available — server, 2070 Super
   - model_name: local-router
     litellm_params:
       model: ollama/<small-model>

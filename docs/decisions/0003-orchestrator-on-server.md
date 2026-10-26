@@ -31,6 +31,9 @@ models handle acceptably. Hard reasoning is what gets escalated.
 
 ## Consequences
 
-- Router quality is capped by what fits in 11GB (~7-8B)
+- Router quality is capped by what fits in 8GB (~7-8B at Q4)
 - Requires a health-check + fallback chain (LiteLLM) rather than a static route
 - System degrades gracefully when the desktop is gaming instead of hanging
+
+> **Correction 2026-10-26:** the server GPU is an RTX 2070 Super (8GB, ~215W),
+> not a 2080 Ti (11GB, ~260W). Figures above updated; the decision is unchanged.

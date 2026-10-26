@@ -1,6 +1,7 @@
 # Handoff — session context
 
-Last updated 2026-10-21. Rewritten after the repo moved ahead of the planning
+Last updated 2026-10-26. Detailed log of the 2026-10-22 → 26 sessions:
+`docs/sessions/2026-10-25.md`. Rewritten after the repo moved ahead of the planning
 conversation that created it.
 
 **This file is transitional.** Everything durable here belongs in `spec.md`,
@@ -20,12 +21,16 @@ decided-with-conditions rather than left open (bom.md #23).
 
 | # | Item | Why it matters |
 |---|---|---|
-| 1 | MemTest86 overnight on the 2x16 kit | Must pass before ZFS holds real data. Paste arrives 2026-10-22 — **the 120mm fan is the last blocker** |
-| 2 | **970 Evo Plus capacity** | 250-500GB = M2_2 needs its own drive. 1-2TB = Phase 1 buys almost nothing |
+| 1 | MemTest86 overnight on the 2x16 kit | **Unblocked** — fan fitted, paste arrived, USB stick in progress. Must pass before ZFS holds real data |
+| 2 | ~~970 Evo Plus capacity~~ | **Resolved: 1TB.** Boot + hot tier share M2_1; M2_2 stays free |
 | 3 | Burn in the new IronWolfs (bought 2026-10-21) | Do it inside the return window — a week-one failure goes back to the store, not through RMA |
 | 4 | Which room, and the cable route | ADR 0005 left both TBD. Apartment — wall runs may need landlord sign-off |
 | 5 | Physical bay recount | Spec says 4; owner saw "8 places". Confirm when installing drives |
 | 6 | Confirm RAM speed in BIOS | XMP off; running at default SPD |
+| 7 | Characterize the PSU noise heard 2026-10-25 | `bom.md` #23 lists coil whine as a replace trigger |
+| 8 | Keep vs. return the IronWolfs | Keep if the irreplaceable part of the desktop's 8TB fits in ~3TB usable. Decide inside the return window |
+| 9 | Ethernet to the server | It has no network yet |
+| 10 | Fan curves in BIOS | `CPU_FAN` + front `SYS_FAN` in PWM mode; rear in DC mode if it's 3-pin |
 
 ## Known tension worth tracking
 
@@ -46,6 +51,10 @@ Re-evaluate the PSU before Phase 2 puts both GPUs under sustained load.
 - Do **not** move the 4090 to the server. Direct 4090-to-OLED at sub-1ms already
   beats any streaming or passthrough arrangement.
 - Mirrors, not raidz (ADR 0002).
+- The server GPU is an **RTX 2070 Super (8GB)**, not a 2080 Ti. ~7-8B at Q4 is the
+  ceiling for the always-on model.
+- **Never use the bagged modular SATA cables** — they tested wrong for the TX750M
+  (2026-10-25). Factory-attached SATA and PCIe cables only.
 - A local marketplace lot of 15-year-old consumer drives was evaluated and
   rejected on per-TB cost, age, and bay/port budget (ADR 0004).
 - The PCIe 5.0 drive does not go in the server — Z390's M.2 slots are PCIe 3.0,

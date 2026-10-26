@@ -7,7 +7,7 @@ instead of being locked to a single guest. See ADR 0001.
 
 | Container | Purpose | GPU |
 |---|---|---|
-| `model-serving` | Ollama / llama.cpp | 2080 Ti + 1060 |
+| `model-serving` | Ollama / llama.cpp | 2070 Super + 1060 |
 | `gateway` | LiteLLM routing | none |
 | `media` | Jellyfin or Plex (TBD) | possibly 1060 for transcode |
 | `sandbox` | Experiments — snapshot before every session | as needed |
