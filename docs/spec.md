@@ -38,7 +38,7 @@ model over LAN when free; unavailable during gaming.
 | GPU 1 | RTX 2070 Super 8GB (Turing, sm_75, ~215W) | Installed 2026-10-25 in the top x16 slot, factory-attached PCIe power; detected |
 | GPU 2 | GTX 1060 6GB (Pascal, sm_61, ~120W) | — |
 | Case | Cooler Master HAF XB EVO | 4x 3.5" per manufacturer spec. ⚠️ Not physically recounted |
-| CPU cooler | Existing Cooler Master tower heatsink (~2019) + new 120mm fan | Fan is 4-pin PWM on `CPU_FAN`. Its 5V ARGB lead is left unplugged — never into the 12V `JRGB` header. Paste: Kryonaut (⚠️ applied — not explicitly confirmed) |
+| CPU cooler | Existing Cooler Master tower heatsink (~2019) + new 120mm fan | Fan is 4-pin PWM on `CPU_FAN`. Its 5V ARGB lead is left unplugged — never into the 12V `JRGB` header. Paste: Kryonaut — good contact confirmed, CPU 38°C during MemTest86 (2026-10-26) |
 | Case fans | 2x be quiet! 140mm PWM (front intake) + stock 120mm (rear exhaust) | Front on `SYS_FAN` headers, PWM mode. Rear is old — ⚠️ plug type unknown; DC mode if 3-pin. 2x140 in vs 1x120 out = slight positive pressure |
 | HDD x2 | Seagate IronWolf 4TB (CMR NAS) | Bought new 2026-10-21. On SATA1/SATA2, powered by the factory-attached SATA cable; detected 2026-10-25. Accidentally initialized as GPT in Windows — harmless, wiped at ZFS creation. ⚠️ Burn-in pending |
 | NVMe | Samsung 970 Evo Plus **1TB** (PCIe 3.0) | Installed in M2_1. Holds boot + hot tier, so M2_2 stays free. Still carries the old desktop Windows install until Proxmox replaces it |
@@ -119,6 +119,7 @@ exceeds 6 SATA ports and would require an HBA.
 | 4x 3.5" bays | The real storage ceiling |
 | 16 CPU PCIe lanes | Two GPUs at x16/x4 — fine for inference |
 | 32GB DDR4 | Cap ZFS ARC; DDR4 pricing makes upgrades painful |
+| Non-ECC RAM (8700K / Z390 can't do ECC) | RAM is the one unchecksummed stage of the data path: a bit flipped before ZFS checksums a write lands on both mirror disks with a valid checksum. Mitigations: MemTest86 before data goes in, regular snapshots, and treat checksum errors on **both** mirror disks at once as a RAM/controller signal, not a drive failure |
 | 750W | ~560W peak; limits GPU upgrades |
 | Mesh case, apartment | Heat needs somewhere to go — see Placement |
 | 1GbE onboard | ~5TB migration is an overnight job |

@@ -14,7 +14,7 @@ that Node A can stay a gaming/theater machine.
 ## Current status
 
 **Phase 0, in progress.** Motherboard POST verified 2026-10-05 (board, CPU, RAM
-working). Phase 0 items recorded. Still open: memtest (unblocked; USB stick in progress), PSU
+working). Phase 0 items recorded. Still open: memtest (running since 2026-10-26), PSU
 replacement deferred (see bom.md #23), server room + cable route. See `ROADMAP.md` Phase 0.
 
 Storage drives are **on hand** as of 2026-10-21 (2x 4TB IronWolf + 970 Evo
