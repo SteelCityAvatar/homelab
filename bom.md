@@ -35,7 +35,7 @@ Last updated 2026-10-26.
 
 | # | Part | Spec | Status | Notes |
 |---|---|---|---|---|
-| 26 | NVMe | Samsung 9100 Pro 1TB (PCIe 5.0) | Installed | Bought new 2026-10-21. Replaced the 970 (ADR 0006). ⚠️ Stable boot not explicitly confirmed |
+| 26 | NVMe | Samsung 9100 Pro 1TB (PCIe 5.0) | Installed | Bought new 2026-10-21. Replaced the 970 (ADR 0006). Cloned from the 970; stable in daily use (confirmed 2026-10-27) |
 
 ## Tools
 

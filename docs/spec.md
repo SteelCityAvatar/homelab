@@ -15,7 +15,7 @@ Doubles as the home theater PC. **The 4090 stays here.**
 | GPU | NVIDIA RTX 4090 (24GB) |
 | RAM | 32GB DDR5-5600 |
 | Storage | 8TB HDD — holds most media + personal files today, **single disk, no second copy** |
-| SSD | Samsung 9100 Pro 1TB (PCIe 5.0) — took over from the 970 Evo Plus, which is now in the server (ADR 0006). ⚠️ Stable boot from it not explicitly confirmed |
+| SSD | Samsung 9100 Pro 1TB (PCIe 5.0) — took over from the 970 Evo Plus, which is now in the server (ADR 0006). Cloned from the 970; stable in daily use (confirmed 2026-10-27) |
 | OS | Windows 11 |
 | Display | Samsung S90D OLED |
 | Audio | Onkyo TX-NR6050 AVR + 5.1 |

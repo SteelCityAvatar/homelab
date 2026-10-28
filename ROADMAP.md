@@ -37,8 +37,8 @@ drive purchases needed to start. See ADR 0006 and bom.md #24-26.
       one goes back to the store instead of through RMA
 - [ ] SMART/TBW check on the 970 — it's the used drive here
 - [x] Swap NVMe drives between machines (ADR 0006) — 970 now in the server.
-      ⚠️ Desktop stability on the 9100 Pro not explicitly confirmed — confirm before
-      Proxmox wipes the 970
+      Desktop confirmed stable on the 9100 Pro (2026-10-27) and it was a clone,
+      so the 970 holds nothing unique — safe for Proxmox to wipe
 - [x] Fit the 120mm fan to the existing heatsink (bom.md #12) — 2026-10-24
 - [ ] Assemble — mostly done 2026-10-25: IronWolfs (SATA1/2, factory SATA power),
       GPU (factory PCIe power) and front fans in. Remaining: Ethernet, fan curves
