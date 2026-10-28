@@ -33,7 +33,7 @@ model over LAN when free; unavailable during gaming.
 |---|---|---|
 | Motherboard | MSI MPG Z390 Gaming Plus (ATX, LGA1151) | POST verified 2026-10-05 |
 | CPU | Intel i7-8700K (6C/12T, Coffee Lake) | — |
-| RAM | 32GB DDR4 — 2x16GB 3200 kit (2 slots free) | XMP off, default SPD speed — ⚠️ likely 2133–2666, confirm in BIOS (8700K IMC is rated 2666; stability over speed for non-ECC ZFS). CL TBD. Memtest pending. Spare 16GB kit on hand, deliberately not mixed in |
+| RAM | 32GB DDR4 — 2x16GB 3200 kit (2 slots free) | XMP off, default SPD speed — ⚠️ likely 2133–2666, confirm in BIOS (8700K IMC is rated 2666; stability over speed for non-ECC ZFS). CL TBD. MemTest86 passed 2026-10-27. Spare 16GB kit on hand, deliberately not mixed in |
 | PSU | Corsair TX750M (750W, semi-modular) | ~2013, approx. (owner recollection). ⚠️ ~13 yrs old — replacement deferred, conditions in bom.md #23. Light-load test 2026-10-25: 12V 11.97 / 5V 5.08 / 3.3V 3.35, all in spec. **Factory-attached SATA/PCIe cables only** — bagged modular SATA cables tested bad |
 | GPU 1 | RTX 2070 Super 8GB (Turing, sm_75, ~215W) | Installed 2026-10-25 in the top x16 slot, factory-attached PCIe power; detected |
 | GPU 2 | GTX 1060 6GB (Pascal, sm_61, ~120W) | — |

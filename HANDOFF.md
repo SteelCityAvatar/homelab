@@ -21,7 +21,7 @@ decided-with-conditions rather than left open (bom.md #23).
 
 | # | Item | Why it matters |
 |---|---|---|
-| 1 | MemTest86 overnight on the 2x16 kit | **Running** since 2026-10-26. Must finish with 0 errors before ZFS holds real data |
+| 1 | ~~MemTest86 on the 2x16 kit~~ | **Passed 2026-10-27** |
 | 2 | ~~970 Evo Plus capacity~~ | **Resolved: 1TB.** Boot + hot tier share M2_1; M2_2 stays free |
 | 3 | Burn in the new IronWolfs (bought 2026-10-21) | Do it inside the return window — a week-one failure goes back to the store, not through RMA |
 | 4 | Which room, and the cable route | ADR 0005 left both TBD. Apartment — wall runs may need landlord sign-off |

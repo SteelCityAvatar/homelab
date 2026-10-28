@@ -10,11 +10,11 @@ Phases are gated. Do not start a phase until its blocker clears.
 
 - [x] Bench-test the board for POST (`docs/runbooks/bench-test-motherboard.md`)
       — passed 2026-10-05. Board, CPU, RAM confirmed working. Tested with one
-      DIMM only; ⚠️ remaining sticks not individually tested.
+      DIMM only; Both sticks since installed and passed MemTest86 (2026-10-27).
 - [x] Count 3.5" bays in the HAF XB EVO — 4, per manufacturer spec (2.5" mounts are conversions of the same 4). ⚠️ Owner saw "8 places"; physical recount not done — confirm when installing drives
 - [x] Record RAM config — 2x16GB DDR4-3200 matched kit, DIMMA2 + DIMMB2. XMP off — runs at the kit's default SPD speed (⚠️ likely 2133–2666, confirm in BIOS). Separate 16GB kit kept as spare (not mixed in). CL/voltage TBD (irrelevant with XMP off)
-- [ ] MemTest86 overnight on the 2x16 kit — must pass before trusting ZFS with data.
-      **Running** — started 2026-10-26 with both sticks installed. CPU 38°C during the run
+- [x] MemTest86 on the 2x16 kit — **passed 2026-10-27**, both sticks installed.
+      CPU 38°C during the run
 - [x] Record PSU model and age — Corsair TX750M, bought new ~2013 (~13 yrs). ⚠️ Exceeds the 8-yr replace threshold in bom.md. Replacement **deferred** by owner 2026-10-05 — conditions in bom.md #23
 - [x] Verify the PSU and modular cables with a multimeter — 2026-10-25. Voltages in
       spec at light load. Bagged SATA cables **BAD**; factory SATA cable verified

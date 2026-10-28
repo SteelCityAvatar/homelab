@@ -15,7 +15,7 @@ Last updated 2026-10-26.
 |---|---|---|---|---|
 | 1 | Motherboard | MSI MPG Z390 Gaming Plus | Installed | POST verified 2026-10-05 |
 | 2 | CPU | i7-8700K | Installed | — |
-| 3 | RAM | 32GB DDR4 — 2x16GB 3200 kit | Installed | XMP off, default SPD speed (⚠️ confirm in BIOS). **MemTest86 running** (started 2026-10-26). Spare 16GB kit on hand, deliberately not mixed in |
+| 3 | RAM | 32GB DDR4 — 2x16GB 3200 kit | Installed | XMP off, default SPD speed (⚠️ confirm in BIOS). **MemTest86 passed** 2026-10-27. Spare 16GB kit on hand, deliberately not mixed in |
 | 4 | PSU | Corsair TX750M (750W, semi-modular) | Installed | ~2013, ~13 yrs old. Light-load voltages in spec (2026-10-25). Replacement deferred — conditions in #23 |
 | 5 | GPU | RTX 2070 Super 8GB | Installed | Top x16 slot, **factory-attached** PCIe power. Detected 2026-10-25 |
 | 6 | GPU | GTX 1060 6GB | On hand | Not installed yet |
@@ -27,7 +27,7 @@ Last updated 2026-10-26.
 | 15 | Thermal paste | Thermal Grizzly Kryonaut | Applied | Good contact confirmed: CPU 38°C during MemTest86, 2026-10-26 |
 | 16 | SATA data cables | 4 | 2 in use | SATA1 + SATA2 |
 | 17 | SATA power | **Factory-attached** SATA cable on the TX750M | In use | Verified with a multimeter 2026-10-25. Powers both IronWolfs |
-| 18 | USB stick | 8GB+ | On hand | MemTest86 now, Proxmox installer later |
+| 18 | USB stick | 8GB+ | On hand | MemTest86 done; next it becomes the Proxmox installer |
 | 24 | HDD x2 | Seagate IronWolf 4TB (CMR NAS) | Installed | Bought new 2026-10-21. SATA1/SATA2, detected. Vault mirror. ⚠️ Burn-in pending — inside the return window. Keep vs. return still open |
 | 25 | NVMe | Samsung 970 Evo Plus 1TB | Installed | M2_1. Boot + hot tier, so M2_2 stays free. Still holds the old desktop Windows install. ⚠️ SMART/TBW check pending |
 
