@@ -8,6 +8,13 @@ conversation that created it.
 `bom.md`, `ROADMAP.md` or an ADR. When the open items below close, fold them in
 and delete this file rather than letting it become a second source of truth.
 
+## Current step (2026-10-29)
+
+**Writing the Proxmox installer USB.** Rufus failed because Windows kept the stick's
+old partitions mounted. The stick holds a partial image — don't use it. Next: identify
+the Lexar stick with `Get-Disk`, have the owner confirm the number, `Clear-Disk` it,
+re-run Rufus. Full detail and the install notes: `docs/sessions/2026-10-29.md`.
+
 ## Where the project stands
 
 Phase 0 is mostly done. The board POSTs (2026-10-05), RAM is a 2x16GB kit with
