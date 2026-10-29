@@ -14,7 +14,7 @@ M2_1 NVMe. This slot costs zero SATA ports on the MPG Z390 Gaming Plus — see
 | Target disk | Samsung 970 EVO Plus 1TB (NVMe, M2_1) |
 | Filesystem | ext4 + LVM-thin (installer default) |
 | IP / gateway | 192.168.1.169/24, gateway 192.168.1.1 |
-| Hostname | ⚠️ likely `steel` — confirm from the console login prompt |
+| Hostname | `steel` (confirmed) |
 | Timezone | America/New_York |
 | Web UI | `https://192.168.1.169:8006`, user `root` |
 

@@ -8,15 +8,28 @@ conversation that created it.
 `bom.md`, `ROADMAP.md` or an ADR. When the open items below close, fold them in
 and delete this file rather than letting it become a second source of truth.
 
-## Current step (2026-10-29)
+## Current step (2026-10-29, end of night)
 
-**Proxmox VE 9.2 is installed on the 970** — ext4, IP `192.168.1.169`, hostname
-⚠️ most likely `steel` (heard over voice; confirm on the console). Web UI:
-`https://192.168.1.169:8006`, user `root`. ⚠️ Browser login not yet confirmed.
+**Proxmox VE 9.2 is installed and its web UI is reachable** at
+`https://192.168.1.169:8006` (hostname **`steel`**, confirmed from the browser tab).
+⚠️ Root login not yet done. The server is left running overnight — fine at idle.
+The 2070 Super idles slightly warm with no NVIDIA driver yet; harmless until Phase 2.
 
-Next, one at a time: web UI login → DHCP reservation for .169 on the router →
-no-subscription repo + updates → **IronWolf burn-in before any pool is created**.
-Detail: `docs/sessions/2026-10-29.md` → "Done — Proxmox VE installed".
+**Next, one step at a time:**
+
+1. Log in as `root` (realm: Linux PAM). Dismiss the "No valid subscription" popup.
+2. Node **steel → Shell** → `lsblk -o NAME,SIZE,MODEL` → confirm the IronWolfs are
+   `sda` / `sdb` **before** running anything against them.
+3. Start the burn-in with **SMART long tests** on both IronWolfs (read-only, ~8–10 h).
+   The full-surface write/read pass comes after. Then the SMART check on the 970.
+4. DHCP reservation for `.169` on the router; no-subscription repo + updates.
+
+**Open, not urgent:** the repo is public and older commits carry the owner's
+personal email in their author field (git metadata, not in any file). Options:
+make the repo private, or rewrite history with the GitHub no-reply address. Owner
+to decide. New commits should use the no-reply address.
+
+Install detail: `docs/sessions/2026-10-29.md` → "Done — Proxmox VE installed".
 
 ## Where the project stands
 
