@@ -1,6 +1,6 @@
 # Handoff — session context
 
-Last updated 2026-10-26. Detailed log of the 2026-10-22 → 26 sessions:
+Last updated 2026-10-29. Detailed log of the 2026-10-22 → 26 sessions:
 `docs/sessions/2026-10-25.md`. Rewritten after the repo moved ahead of the planning
 conversation that created it.
 
@@ -10,10 +10,14 @@ and delete this file rather than letting it become a second source of truth.
 
 ## Current step (2026-10-29)
 
-**Writing the Proxmox installer USB.** Rufus failed because Windows kept the stick's
-old partitions mounted. The stick holds a partial image — don't use it. Next: identify
-the Lexar stick with `Get-Disk`, have the owner confirm the number, `Clear-Disk` it,
-re-run Rufus. Full detail and the install notes: `docs/sessions/2026-10-29.md`.
+**Installer USB is written and ready — next is booting the server from it.** ISO
+SHA256 verified against the official `SHA256SUMS`. Written with Rufus to a **third,
+new stick**. The Lexar is retired (failed three times; holds junk — never boot it).
+
+Paused because the server needs the OLED TV as its monitor and the Cat6 currently
+used by the desktop. Resume with the boot steps in `docs/sessions/2026-10-29.md`
+→ "Next — the install". **Go one installer screen at a time; the disk-selection
+screen is where a wrong pick wipes an IronWolf.**
 
 ## Where the project stands
 
