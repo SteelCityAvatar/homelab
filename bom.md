@@ -27,9 +27,9 @@ Last updated 2026-10-26.
 | 15 | Thermal paste | Thermal Grizzly Kryonaut | Applied | Good contact confirmed: CPU 38°C during MemTest86, 2026-10-26 |
 | 16 | SATA data cables | 4 | 2 in use | SATA1 + SATA2 |
 | 17 | SATA power | **Factory-attached** SATA cable on the TX750M | In use | Verified with a multimeter 2026-10-25. Powers both IronWolfs |
-| 18 | USB stick | 8GB+ | On hand | MemTest86 done; next it becomes the Proxmox installer |
+| 18 | USB stick | 8GB+ | On hand | Proxmox installer, written to a **new** stick (2026-10-29). The 32GB **Lexar is retired** — it failed three times; don't use it for installers |
 | 24 | HDD x2 | Seagate IronWolf 4TB (CMR NAS) | Installed | Bought new 2026-10-21. SATA1/SATA2, detected. Vault mirror. ⚠️ Burn-in pending — inside the return window. Keep vs. return still open |
-| 25 | NVMe | Samsung 970 Evo Plus 1TB | Installed | M2_1. Boot + hot tier, so M2_2 stays free. Still holds the old desktop Windows install. ⚠️ SMART/TBW check pending |
+| 25 | NVMe | Samsung 970 Evo Plus 1TB | Installed | M2_1. Boot + hot tier, so M2_2 stays free. Proxmox VE 9.2 installed 2026-10-29. ⚠️ SMART/TBW check pending |
 
 ## Have — desktop
 
@@ -59,7 +59,7 @@ boots on it — so that bag is mixed, not uniformly wrong.
 
 | # | Part | Qty | Priority | Notes |
 |---|---|---|---|---|
-| 19 | Ethernet cable | 1 | **Phase 1 — now** | The server has no network. Proxmox is managed through a web UI over the LAN, so this blocks setup. Length depends on the room (ADR 0005) |
+| 19 | Ethernet cable | 1 | Soon | The server is borrowing the desktop's Cat6 (desktop on Wi-Fi meanwhile). Buy a dedicated cable once the room is chosen — length depends on it (ADR 0005) |
 | 22 | UPS | 1 | Before the Vault holds data | Protects ZFS + irreplaceable data; triggers clean shutdown |
 | 23 | PSU replacement | 1 | Deferred, still recommended | See below |
 | 11 | HDD, recertified enterprise | 2 | Later | Bulk tier — 2 bays + 2 SATA ports free. Buy when prices allow |
@@ -93,6 +93,6 @@ TX750M's, so use only the new unit's own cables.
 
 ## Phasing
 
-**Phase 1 needs one purchase: an Ethernet cable (#19).** Everything else for it
+**Phase 1 needs one purchase: a dedicated Ethernet cable (#19)** — the server is on a borrowed one. Everything else for it
 is on hand. Get the UPS (#22) before the Vault holds data that exists nowhere
 else. Bulk HDDs (#11) can wait for better prices.

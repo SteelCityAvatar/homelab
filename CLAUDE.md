@@ -13,9 +13,10 @@ that Node A can stay a gaming/theater machine.
 
 ## Current status
 
-**Phase 0, in progress.** Motherboard POST verified 2026-10-05 (board, CPU, RAM
-working). Phase 0 items recorded; MemTest86 passed 2026-10-27. Still open: PSU
-replacement deferred (see bom.md #23), server room + cable route. See `ROADMAP.md` Phase 0.
+**Phase 1, in progress.** Proxmox VE 9.2 is installed on the 970 (2026-10-29) and
+serves its web UI at `https://192.168.1.169:8006`. Phase 0 is done apart from two
+leftovers: PSU replacement deferred (see bom.md #23), and the server room + cable
+route. See `ROADMAP.md`.
 
 Storage drives are **on hand** as of 2026-10-21 (2x 4TB IronWolf + 970 Evo
 Plus) — Phase 1 needs no drive purchases. See `HANDOFF.md` for current open

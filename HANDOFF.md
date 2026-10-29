@@ -10,14 +10,13 @@ and delete this file rather than letting it become a second source of truth.
 
 ## Current step (2026-10-29)
 
-**Installer USB is written and ready — next is booting the server from it.** ISO
-SHA256 verified against the official `SHA256SUMS`. Written with Rufus to a **third,
-new stick**. The Lexar is retired (failed three times; holds junk — never boot it).
+**Proxmox VE 9.2 is installed on the 970** — ext4, IP `192.168.1.169`, hostname
+⚠️ most likely `steel` (heard over voice; confirm on the console). Web UI:
+`https://192.168.1.169:8006`, user `root`. ⚠️ Browser login not yet confirmed.
 
-Paused because the server needs the OLED TV as its monitor and the Cat6 currently
-used by the desktop. Resume with the boot steps in `docs/sessions/2026-10-29.md`
-→ "Next — the install". **Go one installer screen at a time; the disk-selection
-screen is where a wrong pick wipes an IronWolf.**
+Next, one at a time: web UI login → DHCP reservation for .169 on the router →
+no-subscription repo + updates → **IronWolf burn-in before any pool is created**.
+Detail: `docs/sessions/2026-10-29.md` → "Done — Proxmox VE installed".
 
 ## Where the project stands
 

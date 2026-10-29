@@ -41,7 +41,7 @@ model over LAN when free; unavailable during gaming.
 | CPU cooler | Existing Cooler Master tower heatsink (~2019) + new 120mm fan | Fan is 4-pin PWM on `CPU_FAN`. Its 5V ARGB lead is left unplugged — never into the 12V `JRGB` header. Paste: Kryonaut — good contact confirmed, CPU 38°C during MemTest86 (2026-10-26) |
 | Case fans | 2x be quiet! 140mm PWM (front intake) + stock 120mm (rear exhaust) | Front on `SYS_FAN` headers, PWM mode. Rear is old — ⚠️ plug type unknown; DC mode if 3-pin. 2x140 in vs 1x120 out = slight positive pressure |
 | HDD x2 | Seagate IronWolf 4TB (CMR NAS) | Bought new 2026-10-21. On SATA1/SATA2, powered by the factory-attached SATA cable; detected 2026-10-25. Accidentally initialized as GPT in Windows — harmless, wiped at ZFS creation. ⚠️ Burn-in pending |
-| NVMe | Samsung 970 Evo Plus **1TB** (PCIe 3.0) | Installed in M2_1. Holds boot + hot tier, so M2_2 stays free. Still carries the old desktop Windows install until Proxmox replaces it |
+| NVMe | Samsung 970 Evo Plus **1TB** (PCIe 3.0) | Installed in M2_1. Holds boot + hot tier, so M2_2 stays free. **Proxmox VE 9.2 installed 2026-10-29** (ext4 + LVM-thin); the old Windows copy is gone |
 
 ### Motherboard capability (verified)
 

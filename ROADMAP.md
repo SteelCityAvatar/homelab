@@ -4,7 +4,7 @@ Phases are gated. Do not start a phase until its blocker clears.
 
 ---
 
-## Phase 0 — Verify hardware  ← CURRENT
+## Phase 0 — Verify hardware
 
 **Blocker for everything.** No purchases until this completes.
 
@@ -26,7 +26,7 @@ Phases are gated. Do not start a phase until its blocker clears.
 
 ---
 
-## Phase 1 — Storage foundation
+## Phase 1 — Storage foundation  ← CURRENT
 
 **Drives are on hand.** 2x 4TB IronWolf + the 970 Evo Plus cover Phase 1 — no
 drive purchases needed to start. See ADR 0006 and bom.md #24-26.
@@ -41,8 +41,12 @@ drive purchases needed to start. See ADR 0006 and bom.md #24-26.
       so the 970 holds nothing unique — safe for Proxmox to wipe
 - [x] Fit the 120mm fan to the existing heatsink (bom.md #12) — 2026-10-24
 - [ ] Assemble — mostly done 2026-10-25: IronWolfs (SATA1/2, factory SATA power),
-      GPU (factory PCIe power) and front fans in. Remaining: Ethernet, fan curves
-- [ ] Install Proxmox VE to M2_1 (970 Evo Plus)
+      GPU (factory PCIe power) and front fans in. Ethernet in (borrowed desktop Cat6) 2026-10-29. Remaining: fan curves
+- [x] Install Proxmox VE to M2_1 (970 Evo Plus) — **9.2, 2026-10-29.** ext4,
+      192.168.1.169, web UI on :8006. ⚠️ Hostname likely `steel` — confirm
+- [ ] Log in to the web UI from the desktop
+- [ ] Reserve 192.168.1.169 for the server in the router (DHCP reservation)
+- [ ] Switch to the no-subscription repository and update
 - [ ] Create the Vault mirror from the 2x 4TB IronWolfs
 - [ ] Cap ZFS ARC (32GB total RAM)
 - [ ] Triage + migrate: irreplaceable data to the mirror; media stays on the
