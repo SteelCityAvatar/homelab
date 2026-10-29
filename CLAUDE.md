@@ -56,6 +56,9 @@ information. Summary:
 - Hardware facts live in `docs/spec.md`. Purchase tracking in `bom.md`.
 - Architecture in `docs/architecture.md`.
 - New significant decisions get an ADR in `docs/decisions/` — numbered, dated.
+- **Log every command.** Each PowerShell (desktop) and bash (server) command goes in
+  the current `docs/sessions/<date>.md` under "Command log": exact command,
+  read-only vs. destructive, outcome. Include failed/interrupted ones. Append as you go.
 - Anything unverified is marked `TBD` or `⚠️`. Do not silently fill these in
   with assumptions; flag them.
 
