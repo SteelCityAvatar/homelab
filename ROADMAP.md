@@ -44,7 +44,7 @@ drive purchases needed to start. See ADR 0006 and bom.md #24-26.
       GPU (factory PCIe power) and front fans in. Ethernet in (borrowed desktop Cat6) 2026-10-29. Remaining: fan curves
 - [x] Install Proxmox VE to M2_1 (970 Evo Plus) — **9.2, 2026-10-29.** ext4,
       192.168.1.169, web UI on :8006. Hostname `steel`
-- [ ] Log in to the web UI from the desktop
+- [x] Log in to the web UI from the desktop — 2026-10-29 (VE 9.2.2)
 - [ ] Reserve 192.168.1.169 for the server in the router (DHCP reservation)
 - [ ] Switch to the no-subscription repository and update
 - [ ] Create the Vault mirror from the 2x 4TB IronWolfs

@@ -9,7 +9,7 @@ M2_1 NVMe. This slot costs zero SATA ports on the MPG Z390 Gaming Plus — see
 
 | Item | Value |
 |---|---|
-| Version | Proxmox VE 9.2-1 (ISO SHA256 verified against the official `SHA256SUMS`) |
+| Version | Proxmox VE 9.2-1 ISO (SHA256 verified against the official `SHA256SUMS`); reports 9.2.2 after install |
 | Installed | 2026-10-29 |
 | Target disk | Samsung 970 EVO Plus 1TB (NVMe, M2_1) |
 | Filesystem | ext4 + LVM-thin (installer default) |
@@ -20,7 +20,7 @@ M2_1 NVMe. This slot costs zero SATA ports on the MPG Z390 Gaming Plus — see
 
 ## Post-install tasks
 
-- [ ] Log in to the web UI from the desktop
+- [x] Log in to the web UI from the desktop — 2026-10-29
 - [ ] Reserve 192.168.1.169 in the router (DHCP reservation)
 
 - [ ] Remove the enterprise repo / add the no-subscription repo, then update

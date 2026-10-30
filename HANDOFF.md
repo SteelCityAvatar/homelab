@@ -12,12 +12,14 @@ and delete this file rather than letting it become a second source of truth.
 
 **Proxmox VE 9.2 is installed and its web UI is reachable** at
 `https://192.168.1.169:8006` (hostname **`steel`**, confirmed from the browser tab).
-⚠️ Root login not yet done. The server is left running overnight — fine at idle.
+Root login works (2026-10-29 evening). The server is left running overnight — fine at idle.
 The 2070 Super idles slightly warm with no NVIDIA driver yet; harmless until Phase 2.
 
 **Next, one step at a time:**
 
-1. Log in as `root` (realm: Linux PAM). Dismiss the "No valid subscription" popup.
+1. ~~Log in as `root`~~ — done. Next: **steel → Updates → Repositories**, disable
+   enterprise, add No-Subscription, then update. The boot-time `apt-get update`
+   error in the task log is from the enterprise repo and goes away after this.
 2. Node **steel → Shell** → `lsblk -o NAME,SIZE,MODEL` → confirm the IronWolfs are
    `sda` / `sdb` **before** running anything against them.
 3. Start the burn-in with **SMART long tests** on both IronWolfs (read-only, ~8–10 h).
