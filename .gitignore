@@ -3,3 +3,6 @@
 secrets/
 *.env
 .env
+
+# Personal reference notes — local only
+docs/notes/

@@ -60,6 +60,10 @@ information. Summary:
 - **Log every command.** Each PowerShell (desktop) and bash (server) command goes in
   the current `docs/sessions/<date>.md` under "Command log": exact command,
   read-only vs. destructive, outcome. Include failed/interrupted ones. Append as you go.
+- `docs/notes/` holds reference explanations (the *why* behind concepts: apt,
+  ZFS and RAM, PSI graphs, networking, PSU cables). **Gitignored — local only.**
+  When something is explained in a session and worth keeping, add or extend a
+  note there rather than in the session log.
 - Anything unverified is marked `TBD` or `⚠️`. Do not silently fill these in
   with assumptions; flag them.
 
