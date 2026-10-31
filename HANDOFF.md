@@ -1,6 +1,6 @@
 # Handoff — session context
 
-Last updated 2026-10-29. Detailed log of the 2026-10-22 → 26 sessions:
+Last updated 2026-10-31. Detailed log of the 2026-10-22 → 26 sessions:
 `docs/sessions/2026-10-25.md`. Rewritten after the repo moved ahead of the planning
 conversation that created it.
 
@@ -17,14 +17,14 @@ The 2070 Super idles slightly warm with no NVIDIA driver yet; harmless until Pha
 
 **Next, one step at a time:**
 
-1. ~~Log in as `root`~~ — done. Next: **steel → Updates → Repositories**, disable
-   enterprise, add No-Subscription, then update. The boot-time `apt-get update`
-   error in the task log is from the enterprise repo and goes away after this.
-2. Node **steel → Shell** → `lsblk -o NAME,SIZE,MODEL` → confirm the IronWolfs are
-   `sda` / `sdb` **before** running anything against them.
+1. ~~Log in as `root`~~ — done. ~~No-subscription repo + updates~~ — done
+   (2026-10-30/31, `docs/sessions/2026-10-31.md`).
+2. Confirm which device names the IronWolfs have (`sda` / `sdb`) **before** running
+   anything against them — via steel → Disks, or `lsblk -o NAME,SIZE,MODEL`.
 3. Start the burn-in with **SMART long tests** on both IronWolfs (read-only, ~8–10 h).
    The full-surface write/read pass comes after. Then the SMART check on the 970.
-4. DHCP reservation for `.169` on the router; no-subscription repo + updates.
+   **Return window is the clock** — drives bought 2026-10-21.
+4. DHCP reservation for `.169` on the router.
 
 **Open, not urgent:** the repo is public and older commits carry the owner's
 personal email in their author field (git metadata, not in any file). Options:
@@ -54,7 +54,7 @@ decided-with-conditions rather than left open (bom.md #23).
 | 6 | Confirm RAM speed in BIOS | XMP off; running at default SPD |
 | 7 | Characterize the PSU noise heard 2026-10-25 | `bom.md` #23 lists coil whine as a replace trigger |
 | 8 | Keep vs. return the IronWolfs | Keep if the irreplaceable part of the desktop's 8TB fits in ~3TB usable. Decide inside the return window |
-| 9 | Ethernet to the server | It has no network yet |
+| 9 | ~~Ethernet to the server~~ | **Connected** — borrowed desktop Cat6, `192.168.1.169`. Permanent run tied to #4 |
 | 10 | Fan curves in BIOS | `CPU_FAN` + front `SYS_FAN` in PWM mode; rear in DC mode if it's 3-pin |
 
 ## Known tension worth tracking
