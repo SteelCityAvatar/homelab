@@ -8,30 +8,25 @@ conversation that created it.
 `bom.md`, `ROADMAP.md` or an ADR. When the open items below close, fold them in
 and delete this file rather than letting it become a second source of truth.
 
-## Current step (2026-10-29, end of night)
+## Current step (2026-10-31)
 
-**Proxmox VE 9.2 is installed and its web UI is reachable** at
-`https://192.168.1.169:8006` (hostname **`steel`**, confirmed from the browser tab).
-Root login works (2026-10-29 evening). The server is left running overnight — fine at idle.
-The 2070 Super idles slightly warm with no NVIDIA driver yet; harmless until Phase 2.
+**Proxmox VE 9.2.24, fully updated**, web UI at `https://192.168.1.169:8006`
+(hostname `steel`). Rebooted 2026-10-31 ~16:36 onto the new kernel.
+⚠️ Confirm Summary → Kernel Version reads **7.0.14-26-pve**.
 
 **Next, one step at a time:**
 
-1. ~~Log in as `root`~~ — done. ~~No-subscription repo + updates~~ — done
-   (2026-10-30/31, `docs/sessions/2026-10-31.md`).
-2. Confirm which device names the IronWolfs have (`sda` / `sdb`) **before** running
-   anything against them — via steel → Disks, or `lsblk -o NAME,SIZE,MODEL`.
-3. Start the burn-in with **SMART long tests** on both IronWolfs (read-only, ~8–10 h).
-   The full-surface write/read pass comes after. Then the SMART check on the 970.
-   **Return window is the clock** — drives bought 2026-10-21.
-4. DHCP reservation for `.169` on the router.
+1. **Decide: keep the IronWolfs or swap for 2x 14TB recerts.** This decides step 2.
+   Return deadline ≈ **2026-11-20**. Comparison in `docs/sessions/2026-10-31.md`.
+2. Burn in whichever drives stay — confirm device names first (steel → Disks, or
+   `lsblk -o NAME,SIZE,MODEL`), then SMART long tests, then a full-surface pass.
+   SMART check on the 970 too.
+3. DHCP reservation for `.169` on the router.
+4. Then: Vault mirror + ZFS ARC cap (Phase 1).
 
 **Open, not urgent:** the repo is public and older commits carry the owner's
-personal email in their author field (git metadata, not in any file). Options:
-make the repo private, or rewrite history with the GitHub no-reply address. Owner
-to decide. New commits should use the no-reply address.
-
-Install detail: `docs/sessions/2026-10-29.md` → "Done — Proxmox VE installed".
+personal email in their author field (git metadata, not in any file). New commits
+use the no-reply address. Owner to decide on the old ones.
 
 ## Where the project stands
 

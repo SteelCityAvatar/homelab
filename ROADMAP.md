@@ -46,7 +46,8 @@ drive purchases needed to start. See ADR 0006 and bom.md #24-26.
       192.168.1.169, web UI on :8006. Hostname `steel`
 - [x] Log in to the web UI from the desktop — 2026-10-29 (VE 9.2.2)
 - [ ] Reserve 192.168.1.169 for the server in the router (DHCP reservation)
-- [ ] Switch to the no-subscription repository and update
+- [x] Switch to the no-subscription repository and update — 2026-10-31, VE 9.2.24,
+      rebooted onto kernel 7.0.14-26
 - [ ] Create the Vault mirror from the 2x 4TB IronWolfs
 - [ ] Cap ZFS ARC (32GB total RAM)
 - [ ] Triage + migrate: irreplaceable data to the mirror; media stays on the
