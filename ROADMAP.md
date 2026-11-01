@@ -62,6 +62,8 @@ drive purchases needed to start. See ADR 0006 and bom.md #24-26.
 
 ## Phase 2 — Model serving
 
+Detailed plan: `docs/plans/model-serving.md`.
+
 - [ ] NVIDIA driver on the Proxmox host
 - [ ] LXC with GPU device passthrough
 - [ ] Ollama (or llama.cpp) on the 2070 Super
@@ -77,6 +79,9 @@ and falls back cleanly when it is not.
 ---
 
 ## Phase 3 — Home automation
+
+Detailed plan: `docs/plans/home-assistant.md`. Can start before Phase 2 — it
+depends on nothing.
 
 - [ ] Home Assistant OS in a VM
 - [ ] Integrate with the LiteLLM gateway
