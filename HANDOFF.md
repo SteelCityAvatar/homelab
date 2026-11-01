@@ -21,7 +21,9 @@ and delete this file rather than letting it become a second source of truth.
    wiped and returned before ≈ **2026-11-20**. Nothing irreplaceable lives *only* on
    them. Upgrade path: `zpool replace` each IronWolf with a 14TB drive one at a
    time, then `autoexpand` grows the pool in place — no rebuild, data stays.
-   **Building Home Assistant / LXCs meanwhile** (on `local-lvm`, the 970).
+   **Building the services meanwhile** (on `local-lvm`, the 970): Home Assistant VM,
+   model-serving LXC (needs the host NVIDIA driver first), LiteLLM gateway LXC.
+   ⚠️ Order not confirmed by the owner — see `docs/sessions/2026-11-01.md`.
 2. Burn in whichever drives stay — confirm device names first (steel → Disks, or
    `lsblk -o NAME,SIZE,MODEL`), then SMART long tests, then a full-surface pass.
    SMART check on the 970 too.
