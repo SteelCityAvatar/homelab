@@ -16,8 +16,12 @@ and delete this file rather than letting it become a second source of truth.
 
 **Next, one step at a time:**
 
-1. **Decide: keep the IronWolfs or swap for 2x 14TB recerts.** This decides step 2.
-   Return deadline ≈ **2026-11-20**. Comparison in `docs/sessions/2026-10-31.md`.
+1. **Decided 2026-11-01: swap.** Owner ordering 2x 14TB recerts. IronWolfs stay
+   installed as a **temporary dry-run mirror** until the new drives arrive, then get
+   wiped and returned before ≈ **2026-11-20**. Nothing irreplaceable lives *only* on
+   them. Upgrade path: `zpool replace` each IronWolf with a 14TB drive one at a
+   time, then `autoexpand` grows the pool in place — no rebuild, data stays.
+   **Building Home Assistant / LXCs meanwhile** (on `local-lvm`, the 970).
 2. Burn in whichever drives stay — confirm device names first (steel → Disks, or
    `lsblk -o NAME,SIZE,MODEL`), then SMART long tests, then a full-surface pass.
    SMART check on the 970 too.
