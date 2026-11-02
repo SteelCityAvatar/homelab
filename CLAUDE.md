@@ -60,6 +60,11 @@ information. Summary:
 - **Log every command.** Each PowerShell (desktop) and bash (server) command goes in
   the current `docs/sessions/<date>.md` under "Command log": exact command,
   read-only vs. destructive, outcome. Include failed/interrupted ones. Append as you go.
+- **The repo is public. Write it as an engineer's build log:** impersonal voice, no
+  "the owner", no references to AI chats or sessions, no personal or household
+  details (people, retailers, receipts). Record operator slips only when there's a
+  reusable lesson, and state the lesson, not the slip. Real incidents get honest
+  write-ups.
 - `docs/notes/` holds reference explanations (the *why* behind concepts: apt,
   ZFS and RAM, PSI graphs, networking, PSU cables). **Gitignored — local only.**
   When something is explained in a session and worth keeping, add or extend a

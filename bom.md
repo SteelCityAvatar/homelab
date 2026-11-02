@@ -1,7 +1,7 @@
 # Bill of Materials
 
-**Prices intentionally omitted.** The 2026 storage/memory shortage moves fast —
-look up current pricing rather than trusting a number written here.
+**Prices omitted.** The 2026 storage/memory shortage moves fast — look up current
+pricing rather than trusting a number written here.
 
 Item numbers are stable IDs referenced elsewhere in the repo. Don't renumber.
 
