@@ -29,7 +29,7 @@ Last updated 2026-10-26.
 | 17 | SATA power | **Factory-attached** SATA cable on the TX750M | In use | Verified with a multimeter 2026-10-25. Powers both IronWolfs |
 | 18 | USB stick | 8GB+ | On hand | Proxmox installer, written to a **new** stick (2026-10-29). The 32GB **Lexar is retired** — it failed three times; don't use it for installers |
 | 24 | HDD x2 | Seagate IronWolf 4TB (CMR NAS) | Installed | Bought new 2026-10-21. SATA1/SATA2, detected. Vault mirror. ⚠️ Burn-in pending — inside the return window. **Returning — decided 2026-11-01**, swap for 2x 14TB recerts. Temporary dry-run mirror until they arrive. Wipe, then return before ≈ 2026-11-20 |
-| 25 | NVMe | Samsung 970 Evo Plus 1TB | Installed | M2_1. Boot + hot tier, so M2_2 stays free. Proxmox VE 9.2 installed 2026-10-29. ⚠️ SMART/TBW check pending |
+| 25 | NVMe | Samsung 970 Evo Plus 1TB | Installed | M2_1. Boot + hot tier. Proxmox VE 9.2 installed 2026-10-29. **SMART healthy 2026-11-01** (0 media errors, 1% used, 13,973 h). Read-only-root incident 2026-11-01 → APST disabled; under watch |
 
 ## Have — desktop
 

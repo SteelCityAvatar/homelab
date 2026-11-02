@@ -17,6 +17,8 @@ M2_1 NVMe. This slot costs zero SATA ports on the MPG Z390 Gaming Plus — see
 | Hostname | `steel` (confirmed) |
 | Timezone | America/New_York |
 | Web UI | `https://192.168.1.169:8006`, user `root` |
+| SSH | `ssh root@192.168.1.169` — works when the web UI doesn't |
+| Kernel params | `nvme_core.default_ps_max_latency_us=0` — disables Samsung NVMe APST deep sleep after a read-only-root incident (2026-11-01, `docs/sessions/2026-11-01.md`) |
 
 ## Post-install tasks
 
