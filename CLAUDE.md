@@ -51,6 +51,7 @@ information. Summary:
 - Recertified enterprise drives, not used consumer drives (0004)
 - Server outside the living room, wired ethernet (0005)
 - NVMe swapped between machines: 9100 Pro to desktop, 970 Evo Plus to server (0006)
+- NVIDIA driver from NVIDIA's `.run` installer with DKMS; 2070 Super only (0007)
 
 ## Conventions
 

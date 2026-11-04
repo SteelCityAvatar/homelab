@@ -14,18 +14,17 @@ build. Items marked ⚠️ get verified at the time, not assumed.
 
 ## Phase 0 — Gates and decisions (before touching drivers)
 
-- [ ] **PSU re-test under GPU load** — `bom.md` #23 condition (c). The TX750M is
-      ~13 years old; Phase 2 is the first sustained GPU load.
+- [ ] **PSU re-test under GPU load** — `bom.md` #23 condition (c). Needs the driver
+      first, so it moves to the end of Phase 1 (below), before any container.
 - [ ] ⚠️ **Decide about the GTX 1060.** NVIDIA's **580 driver branch is the last to
       support Pascal** (GTX 10-series); newer branches and CUDA 13 drop it. One host
       runs **one** driver for both cards, so keeping the 1060 pins the whole server to
       the 580 legacy branch — which may lag behind new Proxmox kernels.
       Options: (a) 580 branch for both, (b) **pull the 1060**, run current drivers
       for the 2070 Super alone, (c) keep it installed but unused.
-      → Leaning (b) unless the 1060's job (Whisper/embeddings) is needed early.
-- [ ] Decide the driver source: Debian's packaged driver vs NVIDIA's `.run`
-      installer. ⚠️ The container's userspace driver **must match the host's
-      version exactly**; the `.run` route makes that easy to control.
+      → **Decided (b), 2026-11-03** — the 1060 isn't installed. ADR 0007.
+- [x] Driver source: **NVIDIA's `.run` installer with DKMS** — decided 2026-11-03,
+      ADR 0007. Host and containers run the exact same version.
 
 ## Phase 1 — NVIDIA driver on the host
 
@@ -37,6 +36,9 @@ build. Items marked ⚠️ get verified at the time, not assumed.
       → also fixes the "GPU idles warm with no driver" note
 - [ ] Make sure `/dev/nvidia-uvm*` exist at boot (⚠️ may need `nvidia-persistenced`
       or a udev/modprobe rule)
+- [ ] **PSU load test:** stress the 2070 Super for ~30 min while watching
+      `nvidia-smi` and listening to the PSU. Any reboot or shutdown under load
+      → replace the PSU (`bom.md` #23 b)
 - [ ] **Kernel-update caveat:** every new Proxmox kernel needs the module rebuilt.
       DKMS automates it; the `.run` installer with DKMS does too. Test once:
       reboot after a kernel update and check `nvidia-smi`.
