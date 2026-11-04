@@ -20,7 +20,9 @@ driver is mid-install; data drives are being swapped for 2x 14TB recerts.
 
 ## Hard constraints (do not design around these being flexible)
 
-- **4× 3.5" drive bays** in the case — this is the storage ceiling, not SATA ports
+- **4× 3.5" drive bays** in the current case — the storage ceiling *for now*. This
+  chassis is effectively a test bench; more drive space is planned later. Keep the
+  ZFS pool portable (it moves to new hardware with `zpool export` / `import`)
 - **32GB DDR4** (2x16, 2 slots free — 64GB possible but DDR4 pricing is painful) — ZFS ARC must be capped
 - **8GB VRAM** on the server's primary GPU (RTX 2070 Super) — caps local models at ~7-8B at Q4 with modest context; 14B is off the table
 - **750W PSU**, ~13 years old — ~440W peak budget; load-test before sustained GPU work

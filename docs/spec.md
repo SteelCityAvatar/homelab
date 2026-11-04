@@ -92,8 +92,10 @@ applies: keep the desktop copy until a Vault backup exists off-server.
 
 The 970 is 1TB, so the hot tier shares M2_1 with boot and M2_2 stays free (ADR 0006).
 
-**Future expansion:** the 5.25" bays accept a 3.5" cage (-> ~7 drives), but that
-exceeds 6 SATA ports and would require an HBA.
+**Future expansion:** the current chassis is effectively a test bench, with more
+drive space planned later. In this case, the 5.25" bays accept a 3.5" cage (-> ~7
+drives), but that exceeds 6 SATA ports and would require an HBA. In any case, the
+ZFS pool moves intact to new hardware (`zpool export` → move drives → `zpool import`).
 
 ---
 
