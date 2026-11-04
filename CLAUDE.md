@@ -56,6 +56,8 @@ information. Summary:
 ## Conventions
 
 - Hardware facts live in `docs/spec.md`. Purchase tracking in `bom.md`.
+- **`README.md` is the public front page.** Update its status table, roadmap row
+  and build-log highlights whenever a phase moves or a notable incident is resolved.
 - Architecture in `docs/architecture.md`.
 - New significant decisions get an ADR in `docs/decisions/` — numbered, dated.
 - **Log every command.** Each PowerShell (desktop) and bash (server) command goes in

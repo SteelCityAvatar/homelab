@@ -13,17 +13,18 @@ desktop that occasionally lends its GPU.
 | | Node A — Desktop | Node B — Server (this build) |
 |---|---|---|
 | Role | Gaming, home theater, burst GPU compute | Always-on storage, AI inference, automation |
-| Hardware | i7-13700K · RTX 4090 24GB · 32GB DDR5 | i7-8700K · RTX 2070 Super 8GB + GTX 1060 6GB · 32GB DDR4 |
-| OS | Windows 11 | Proxmox VE |
+| Hardware | i7-13700K · RTX 4090 24GB · 32GB DDR5 | i7-8700K · RTX 2070 Super 8GB · 32GB DDR4 |
+| OS | Windows 11 | Proxmox VE 9.2 |
 | Availability | Low (gaming, reboots) | High (always on) |
-| Status | Existing, unchanged | **Building — Phase 0 (hardware verification)** |
+| Status | Existing, unchanged | **Building — Phase 1 (storage) and Phase 2 (GPU driver) in progress** |
 
 ## What it's for
 
 **1. AI utility: local model serving with tiered fallback**
 - An always-on 7-8B model on the 2070 Super handles routing, tool selection,
   classification, and Home Assistant calls
-- The GTX 1060 runs specialized work: Whisper transcription, embeddings for RAG
+- A second GPU lane for specialized work (Whisper transcription, embeddings for
+  RAG) is optional later; the GTX 1060 stays out for now ([ADR 0007](docs/decisions/0007-nvidia-driver-run-installer.md))
 - A LiteLLM gateway escalates hard requests to a 27-32B model on the desktop's
   4090 when it's free, and to a frontier API when it isn't
 - Launching a game makes the desktop's health check fail, so the system stops
@@ -66,8 +67,9 @@ Full detail in [`docs/architecture.md`](docs/architecture.md).
   an opportunistic worker, never the reverse ([ADR 0003](docs/decisions/0003-orchestrator-on-server.md)).
 - **Work within real constraints.** 4 drive bays, 32GB RAM, 8GB VRAM, and a
   750W PSU are the ceilings, and the design is sized to them.
-- **Mismatched GPUs are two workers, not one pool.** Turing + Pascal don't pool
-  VRAM, so each gets its own job.
+- **One GPU on a current driver.** A Turing + Pascal pair wouldn't pool VRAM, and
+  the Pascal card would pin the driver to a legacy branch, so the server runs the
+  2070 Super alone ([ADR 0007](docs/decisions/0007-nvidia-driver-run-installer.md)).
 - **Decisions are written down.** Every significant choice has an ADR in
   [`docs/decisions/`](docs/decisions/). Anything unverified is marked `TBD` / ⚠️.
 
@@ -75,13 +77,25 @@ Full detail in [`docs/architecture.md`](docs/architecture.md).
 
 | Phase | Goal | Status |
 |---|---|---|
-| 0 | Verify hardware (POST, RAM, PSU, bays, placement) | **In progress** |
-| 1 | Storage foundation: Proxmox, ZFS mirror, data migration, backup | Drives on hand |
-| 2 | Model serving: GPU LXCs, Ollama, LiteLLM fallback chain | Planned |
+| 0 | Verify hardware (POST, RAM, PSU, bays, placement) | **Done** |
+| 1 | Storage foundation: Proxmox, ZFS mirror, data migration, backup | **In progress** — Proxmox installed and updated; data drives moving to 2× 14TB |
+| 2 | Model serving: NVIDIA driver, GPU LXCs, Ollama, LiteLLM fallback chain | **Started** — driver prerequisites done |
 | 3 | Home automation: Home Assistant VM + gateway integration | Planned |
 | 4 | Polish: UPS, 2.5GbE node-to-node link, media server | Planned |
 
 Details and checklists in [`ROADMAP.md`](ROADMAP.md).
+
+## Build log
+
+Dated logs of what was done, what broke, and how it was fixed are in
+[`docs/sessions/`](docs/sessions/). Notable:
+
+- **PSU cable verification** — two modular SATA cables tested with a multimeter
+  turned out to be wired for a different PSU, caught before they reached a drive
+  ([runbook](docs/runbooks/verify-modular-psu-cables.md)).
+- **Read-only root filesystem** — the boot NVMe likely dropped off the bus after
+  ~25 h idle; diagnosed from the network layer down to the console, mitigated by
+  disabling NVMe APST ([write-up](docs/sessions/2026-11-01.md)).
 
 ## Repo map
 
@@ -92,7 +106,10 @@ docs/
   spec.md              Hardware spec sheet
   architecture.md      System + model topology
   decisions/           ADRs: why things are the way they are
+  plans/               Per-service build plans
   runbooks/            Step-by-step operational procedures
+  sessions/            Dated build logs
+  images/              Screenshots
 infra/
   proxmox/             Host config
   lxc/                 Container definitions (ML/model serving)
