@@ -31,7 +31,9 @@ and delete this file rather than letting it become a second source of truth.
 
 The root filesystem went **read-only** after ~25 h (probable Samsung NVMe APST
 dropout; drive SMART healthy). APST disabled via kernel parameter at 21:10.
-**Leave the server running ≥ 3 days** before calling it fixed. If it recurs:
+**Leave the server running ≥ 3 days** before calling it fixed.
+**2026-11-03 21:56 — up 2 days 55 min, no NVMe/ext4 errors** (past the ~25 h
+failure point). Final check after 2026-11-04 21:10. If it recurs:
 console first (`dmesg` before rebooting!), then reseat the 970, then suspect the PSU.
 Detail: `docs/sessions/2026-11-01.md` → "Incident".
 
