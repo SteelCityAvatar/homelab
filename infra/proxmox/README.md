@@ -9,7 +9,8 @@ M2_1 NVMe. This slot costs zero SATA ports on the MPG Z390 Gaming Plus — see
 
 | Item | Value |
 |---|---|
-| Version | Proxmox VE 9.2-1 ISO (SHA256 verified against the official `SHA256SUMS`); reports 9.2.2 after install |
+| Version | Installed from the 9.2-1 ISO (SHA256 verified); **9.2.24** after the 2026-10-31 upgrade |
+| Kernel | 7.0.14-26-pve (fallback 7.0.2-6-pve in GRUB) |
 | Installed | 2026-10-29 |
 | Target disk | Samsung 970 EVO Plus 1TB (NVMe, M2_1) |
 | Filesystem | ext4 + LVM-thin (installer default) |
@@ -25,11 +26,13 @@ M2_1 NVMe. This slot costs zero SATA ports on the MPG Z390 Gaming Plus — see
 - [x] Log in to the web UI from the desktop — 2026-10-29
 - [ ] Reserve 192.168.1.169 in the router (DHCP reservation)
 
-- [ ] Remove the enterprise repo / add the no-subscription repo, then update
+- [x] Enterprise repos off, no-subscription on, `apt full-upgrade` — 2026-10-31
 - [ ] **Cap ZFS ARC.** Total RAM is 32GB and it is the real ceiling on this
       build. Left uncapped, ARC will starve the HA VM and model containers.
-- [ ] Install the NVIDIA driver on the host (required for LXC passthrough)
-- [ ] Create ZFS pools: Vault (mirror) and Bulk
+- [ ] NVIDIA driver on the host — in progress: headers, `build-essential`, `dkms`
+      installed; nouveau blacklisted (`/etc/modprobe.d/blacklist-nouveau.conf`).
+      595.104.02 next (ADR 0007)
+- [ ] Create the ZFS mirror (IronWolf dry run → 14TB via `zpool replace`)
 - [ ] ~~Configure HDD spindown if living-room placement stands~~ — server is going
       elsewhere (ADR 0005). Revisit only if noise matters in the chosen room
 - [ ] Configure UPS integration and clean shutdown

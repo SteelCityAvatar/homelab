@@ -16,7 +16,7 @@ build. Items marked ⚠️ get verified at the time, not assumed.
 
 - [ ] **PSU re-test under GPU load** — `bom.md` #23 condition (c). Needs the driver
       first, so it moves to the end of Phase 1 (below), before any container.
-- [ ] ⚠️ **Decide about the GTX 1060.** NVIDIA's **580 driver branch is the last to
+- [x] **Decide about the GTX 1060.** NVIDIA's **580 driver branch is the last to
       support Pascal** (GTX 10-series); newer branches and CUDA 13 drop it. One host
       runs **one** driver for both cards, so keeping the 1060 pins the whole server to
       the 580 legacy branch — which may lag behind new Proxmox kernels.
@@ -73,7 +73,7 @@ build. Items marked ⚠️ get verified at the time, not assumed.
 
 ## Phase 5 — Optional: second GPU lane
 
-- [ ] Only if the 1060 stays: Whisper / embeddings pinned to it with
+- [ ] Only if a second GPU is added: Whisper / embeddings pinned to it with
       `CUDA_VISIBLE_DEVICES`
 
 ## Done when
@@ -88,6 +88,6 @@ reboot doesn't break the GPU.
 |---|---|
 | Kernel update breaks the driver | DKMS; test after each kernel update; keep the previous kernel bootable |
 | Host / container driver mismatch | Same installer version in both; record it in `infra/models/README.md` |
-| 1060 forces a legacy driver branch | Decide in Phase 0; pulling the card is the simple path |
+| 1060 forces a legacy driver branch | Resolved — the 1060 is out (ADR 0007) |
 | Old PSU under sustained GPU load | Re-test first (`bom.md` #23 c) |
 | 8 GB VRAM too small | Stay at 7–8B Q4; escalate hard tasks to the 4090 / API |

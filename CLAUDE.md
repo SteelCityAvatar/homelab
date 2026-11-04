@@ -13,31 +13,21 @@ that Node A can stay a gaming/theater machine.
 
 ## Current status
 
-**Phase 1, in progress.** Proxmox VE 9.2 is installed on the 970 (2026-10-29) and
-serves its web UI at `https://192.168.1.169:8006`. Phase 0 is done apart from two
-leftovers: PSU replacement deferred (see bom.md #23), and the server room + cable
-route. See `ROADMAP.md`.
-
-Storage drives are **on hand** as of 2026-10-21 (2x 4TB IronWolf + 970 Evo
-Plus) — Phase 1 needs no drive purchases. See `HANDOFF.md` for current open
-items before starting work.
-
-**2026-10-25:** PSU voltages verified in spec at light load. The bagged modular
-SATA cables are wired wrong for this PSU — **use factory-attached SATA and PCIe
-cables only.** Drives, GPU and front fans are installed. Session log:
-`docs/sessions/2026-10-25.md`.
+**Phase 1 (storage) and Phase 2 (GPU driver) in progress.** Proxmox VE 9.2.24 on
+the 970, web UI `https://192.168.1.169:8006`, SSH `root@192.168.1.169`. The NVIDIA
+driver is mid-install; data drives are being swapped for 2x 14TB recerts.
+**Read `HANDOFF.md` first** for the current step and open items.
 
 ## Hard constraints (do not design around these being flexible)
 
 - **4× 3.5" drive bays** in the case — this is the storage ceiling, not SATA ports
 - **32GB DDR4** (2x16, 2 slots free — 64GB possible but DDR4 pricing is painful) — ZFS ARC must be capped
 - **8GB VRAM** on the server's primary GPU (RTX 2070 Super) — caps local models at ~7-8B at Q4 with modest context; 14B is off the table
-- **750W PSU** — ~560W peak budget, little headroom for GPU upgrades
+- **750W PSU**, ~13 years old — ~440W peak budget; load-test before sustained GPU work
 - **Modular PSU cables:** only the factory-attached SATA and PCIe cables are trusted.
   Never connect a drive or GPU to an untested modular cable
 - **1GbE onboard** networking
-- Server GPUs are mismatched generations and **will not pool** — treat as two
-  independent workers, never as one large pool
+- **One server GPU** (RTX 2070 Super). The GTX 1060 is out (ADR 0007)
 - Server goes outside the living room on wired ethernet (ADR 0005) — room TBD; still an apartment, so noise and heat matter
 
 ## Decisions already made

@@ -6,11 +6,18 @@ Runs in an LXC container with GPU device passthrough from the Proxmox host.
 
 | GPU | Workload |
 |---|---|
-| RTX 2070 Super (8GB) | Primary local model — routing, tool selection, classification |
-| GTX 1060 (6GB) | Secondary lane — Whisper, embeddings for RAG |
+| RTX 2070 Super (8GB) | Local model — routing, tool selection, classification |
 
-The GPUs are pinned to separate workloads via `CUDA_VISIBLE_DEVICES`. They are
-**not** pooled — see `docs/architecture.md`.
+One GPU. The GTX 1060 is out of the build (ADR 0007); a second lane for Whisper /
+embeddings is optional later.
+
+## Driver
+
+| Item | Value |
+|---|---|
+| Source | NVIDIA `.run` installer, DKMS (ADR 0007) |
+| Version | **595.104.02** — ⚠️ not yet installed (2026-11-04) |
+| Containers | Same version, installed with `--no-kernel-module` |
 
 ## Files
 

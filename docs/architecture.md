@@ -7,8 +7,8 @@
 │  NODE A — Desktop        │         │  NODE B — Server         │
 │  Windows 11              │         │  Proxmox VE              │
 │                          │         │                          │
-│  RTX 4090 (24GB)         │◄───────►│  RTX 2070 Super (8GB)      │
-│  13700K / 32GB DDR5      │  LAN    │  GTX 1060 (6GB)          │
+│  RTX 4090 (24GB)         │◄───────►│  RTX 2070 Super (8GB)    │
+│  13700K / 32GB DDR5      │  LAN    │  Proxmox VE 9.2          │
 │  9TB game+scratch        │         │  8700K / 32GB DDR4       │
 │                          │         │  ZFS pools               │
 │  ALSO: home theater      │         │                          │
@@ -76,7 +76,7 @@ offsite / 3-2-1 strategy.
 | Node | Model class | Availability | Job |
 |---|---|---|---|
 | Server / 2070 Super | 7-8B, Q4 | Always on | Routing, tool selection, classification, HA calls |
-| Server / 1060 | Small / specialized | Always on | Whisper, embeddings for RAG |
+| Server / 2nd GPU (optional, later) | Small / specialized | Always on | Whisper, embeddings for RAG — only if a second card is added; the GTX 1060 is out (ADR 0007) |
 | Desktop / 4090 | 27-32B, Q4 | Opportunistic | Hard reasoning, code generation |
 | External API | Frontier | On demand | Escalation for hard bespoke-code work |
 
@@ -102,8 +102,8 @@ system stops escalating rather than hanging. Degradation, not breakage.
 ### Known limits
 
 - 8GB VRAM caps the server at ~7-8B at Q4 with modest context; 14B is off the table
-- The two server GPUs **will not pool**. Mismatched generations, mismatched
-  memory. Two independent workers, not 17GB.
+- **One GPU on the server.** A Turing + Pascal pair wouldn't pool VRAM and would
+  pin the driver to a legacy branch, so the 1060 stays out (ADR 0007).
 - Small models are decent at constrained routing (pick a tool, emit JSON) but
   flaky at multi-step planning. If the 8B loses the thread, narrow its job
   rather than upgrading it.

@@ -18,7 +18,7 @@ Last updated 2026-10-26.
 | 3 | RAM | 32GB DDR4 — 2x16GB 3200 kit | Installed | XMP off, default SPD speed (⚠️ confirm in BIOS). **MemTest86 passed** 2026-10-27. Spare 16GB kit on hand, deliberately not mixed in |
 | 4 | PSU | Corsair TX750M (750W, semi-modular) | Installed | ~2013, ~13 yrs old. Light-load voltages in spec (2026-10-25). Replacement deferred — conditions in #23 |
 | 5 | GPU | RTX 2070 Super 8GB | Installed | Top x16 slot, **factory-attached** PCIe power. Detected 2026-10-25 |
-| 6 | GPU | GTX 1060 6GB | On hand | Not installed yet |
+| 6 | GPU | GTX 1060 6GB | On hand, not used | Out of the build — Pascal would pin the driver to a legacy branch (ADR 0007) |
 | 7 | Case | Cooler Master HAF XB EVO | In use | 4x 3.5" per manufacturer spec. ⚠️ Not physically recounted |
 | 8 | CPU cooler | Existing Cooler Master tower heatsink (~2019) | Installed | With the fan from #12 |
 | 12 | CPU fan | 120mm, 4-pin PWM | Installed 2026-10-24 | On `CPU_FAN`. Its 5V ARGB lead is left unplugged — never into the 12V `JRGB` header |
@@ -62,7 +62,7 @@ boots on it — so that bag is mixed, not uniformly wrong.
 | 19 | Ethernet cable | 1 | Soon | The server is borrowing the desktop's Cat6 (desktop on Wi-Fi meanwhile). Buy a dedicated cable once the room is chosen — length depends on it (ADR 0005) |
 | 22 | UPS | 1 | Before the Vault holds data | Protects ZFS + irreplaceable data; triggers clean shutdown |
 | 23 | PSU replacement | 1 | Deferred, still recommended | See below |
-| 11 | HDD, recertified enterprise | 2 | Later | Bulk tier — 2 bays + 2 SATA ports free. Buy when prices allow |
+| 11 | HDD, recertified enterprise | 2 | **Now** | 2x 14TB (Toshiba MG07ACA14TE favored; Exos X16 16TB alternative). Replaces the IronWolfs. Burn in on arrival |
 | 14 | Anti-vibration HDD grommets/screws | 1 set | Optional | Meaningful in a mesh case |
 | 20 | 2.5GbE NIC | 2 | Optional, Phase 4 | One per machine. Check x1 slot access with the GPUs installed |
 | 30 | Rear case fan | 1 | Optional | 120mm be quiet! PWM, if the stock exhaust rattles |

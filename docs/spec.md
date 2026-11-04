@@ -1,7 +1,7 @@
 # Hardware Spec Sheet
 
 **Version:** 1.0
-**Status:** POST verified 2026-10-05 — Phase 0 checks remaining (see ROADMAP)
+**Status:** Phase 0 done. Proxmox VE 9.2.24 running (2026-11-04). See ROADMAP
 
 ---
 
@@ -36,7 +36,7 @@ model over LAN when free; unavailable during gaming.
 | RAM | 32GB DDR4 — 2x16GB 3200 kit (2 slots free) | XMP off, default SPD speed — ⚠️ likely 2133–2666, confirm in BIOS (8700K IMC is rated 2666; stability over speed for non-ECC ZFS). CL TBD. MemTest86 passed 2026-10-27. Spare 16GB kit on hand, deliberately not mixed in |
 | PSU | Corsair TX750M (750W, semi-modular) | ~2013 (approximate). ⚠️ ~13 yrs old — replacement deferred, conditions in bom.md #23. Light-load test 2026-10-25: 12V 11.97 / 5V 5.08 / 3.3V 3.35, all in spec. **Factory-attached SATA/PCIe cables only** — bagged modular SATA cables tested bad |
 | GPU 1 | RTX 2070 Super 8GB (Turing, sm_75, ~215W) | Installed 2026-10-25 in the top x16 slot, factory-attached PCIe power; detected |
-| GPU 2 | GTX 1060 6GB (Pascal, sm_61, ~120W) | — |
+| GPU 2 | GTX 1060 6GB (Pascal) | **Not used** — out of the build (ADR 0007) |
 | Case | Cooler Master HAF XB EVO | 4x 3.5" per manufacturer spec. ⚠️ Not physically recounted |
 | CPU cooler | Existing Cooler Master tower heatsink (~2019) + new 120mm fan | Fan is 4-pin PWM on `CPU_FAN`. Its 5V ARGB lead is left unplugged — never into the 12V `JRGB` header. Paste: Kryonaut — good contact confirmed, CPU 38°C during MemTest86 (2026-10-26) |
 | Case fans | 2x be quiet! 140mm PWM (front intake) + stock 120mm (rear exhaust) | Front on `SYS_FAN` headers, PWM mode. Rear is old — ⚠️ plug type unknown; DC mode if 3-pin. 2x140 in vs 1x120 out = slight positive pressure |
@@ -76,19 +76,19 @@ model over LAN when free; unavailable during gaming.
 M2_1  -> 970 Evo Plus 1TB: boot + hot tier       costs 0 SATA ports
 M2_2  -> free for now                        (would cost SATA5, SATA6)
 
-SATA1 -> IronWolf 4TB  \__ ZFS mirror = Vault tier
-SATA2 -> IronWolf 4TB  /
-SATA3 -> free  \__ 2 bays + 2 ports free for Bulk tier later
+SATA1 -> 14TB recert   \__ ZFS mirror (IronWolf 4TB pair until the 14TBs arrive)
+SATA2 -> 14TB recert   /
+SATA3 -> free  \__ 2 bays + 2 ports free for later
 SATA4 -> free  /
 
 PCIe x16 -> RTX 2070 Super
-PCIe x4  -> GTX 1060
+PCIe x4  -> empty (GTX 1060 out, ADR 0007)
 ```
 
-**Capacity gap:** the mirror gives 4TB usable against ~5TB of existing data.
-Triage — irreplaceable files to the mirror first; media stays on the desktop's
-9TB until bulk drives are bought. This also satisfies bom.md #23 condition (a),
-which forbids deleting the desktop copy until a Vault backup exists off-server.
+**Capacity:** 2x 14TB mirrored = 14TB usable — all ~5TB of existing data, media
+included, with room to grow. The IronWolf pair (4TB usable) is a temporary dry run
+until the 14TBs arrive; nothing lives only on it. bom.md #23 condition (a) still
+applies: keep the desktop copy until a Vault backup exists off-server.
 
 The 970 is 1TB, so the hot tier shares M2_1 with boot and M2_2 stays free (ADR 0006).
 
@@ -103,10 +103,9 @@ exceeds 6 SATA ports and would require an HBA.
 |---|---|
 | i7-8700K | ~130 |
 | RTX 2070 Super | ~215 |
-| GTX 1060 | ~120 |
 | 4x HDD @ ~8W | ~32 |
 | Board, fans, NVMe | ~60 |
-| **Total** | **~560W** |
+| **Total** | **~440W** |
 
 750W is adequate with headroom for transients. Limits future GPU upgrades.
 
@@ -120,7 +119,7 @@ exceeds 6 SATA ports and would require an HBA.
 | 16 CPU PCIe lanes | Two GPUs at x16/x4 — fine for inference |
 | 32GB DDR4 | Cap ZFS ARC; DDR4 pricing makes upgrades painful |
 | Non-ECC RAM (8700K / Z390 can't do ECC) | RAM is the one unchecksummed stage of the data path: a bit flipped before ZFS checksums a write lands on both mirror disks with a valid checksum. Mitigations: MemTest86 before data goes in, regular snapshots, and treat checksum errors on **both** mirror disks at once as a RAM/controller signal, not a drive failure |
-| 750W | ~560W peak; limits GPU upgrades |
+| 750W | ~440W peak; headroom for a GPU upgrade, PSU age permitting |
 | Mesh case, apartment | Heat needs somewhere to go — see Placement |
 | 1GbE onboard | ~5TB migration is an overnight job |
 | 2026 HDD shortage | ~46-50% price rise since Sept 2025; buy at need |
@@ -132,7 +131,7 @@ exceeds 6 SATA ports and would require an HBA.
 **Settled: the server goes outside the living room, on wired ethernet.**
 See ADR 0005 for the reasoning. ⚠️ Room and cable route still TBD.
 
-The HAF XB EVO is a high-airflow mesh case with no dampening, and ~560W peak is
+The HAF XB EVO is a high-airflow mesh case with no dampening, and ~440W peak is
 mostly heat. Both mattered when living-room placement was on the table; with the
 server elsewhere, noise mitigation largely drops away (ROADMAP Phase 4). Still
 an apartment — check the chosen room is not a closed closet with no airflow.
