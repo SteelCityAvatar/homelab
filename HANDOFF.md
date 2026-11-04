@@ -27,13 +27,21 @@ and delete this file rather than letting it become a second source of truth.
 3. DHCP reservation for `.169` on the router.
 4. Then: Vault mirror + ZFS ARC cap (Phase 1).
 
+## Current work (2026-11-04)
+
+**NVIDIA driver on the host, mid-way.** Headers + build tools installed, nouveau
+blacklisted and confirmed gone. Next: confirm the 595.104.02 installer is in `/root`,
+run it with DKMS, verify `nvidia-smi`, then the PSU load test.
+Detail: `docs/sessions/2026-11-03.md`.
+
 ## Incident watch (from 2026-11-01)
 
 The root filesystem went **read-only** after ~25 h (probable Samsung NVMe APST
 dropout; drive SMART healthy). APST disabled via kernel parameter at 21:10.
 **Leave the server running ≥ 3 days** before calling it fixed.
 **2026-11-03 21:56 — up 2 days 55 min, no NVMe/ext4 errors** (past the ~25 h
-failure point). Final check after 2026-11-04 21:10. If it recurs:
+failure point). Rebooted 2026-11-03 for the nouveau blacklist at ~2 days clean — treated as
+passed; keep watching for recurrence. If it recurs:
 console first (`dmesg` before rebooting!), then reseat the 970, then suspect the PSU.
 Detail: `docs/sessions/2026-11-01.md` → "Incident".
 
