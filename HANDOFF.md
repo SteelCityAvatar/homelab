@@ -21,8 +21,7 @@ Plan: `docs/plans/model-serving.md`, Phase 1. Detail: `docs/sessions/2026-11-03.
       `build-essential`, `dkms`
 - [x] nouveau blacklisted, initramfs rebuilt, rebooted — nouveau no longer loads
 - [x] Version chosen: **595.104.02** (ADR 0007: `.run` + DKMS, 2070 Super only)
-- [ ] ⚠️ Confirm the installer is in `/root` (`ls -lh /root/NVIDIA*`) — download
-      may not have run
+- [ ] Download the installer to `/root` — **not downloaded yet** (checked 2026-11-09)
 - [ ] **Run the installer with DKMS** ← next
 - [ ] `nvidia-smi` shows the 2070 Super
 - [ ] PSU load test (~30 min GPU stress) — gates the model container
@@ -40,13 +39,12 @@ fallback kernel 7.0.2-6 from the GRUB menu.
 - When the 14TB drives arrive: burn in (SMART long + full-surface pass) inside their
   return window, then `zpool replace` one IronWolf at a time → `autoexpand`.
 
-## Incident watch — read-only root (2026-11-01)
+## Incident — read-only root (2026-11-01): closed
 
-Root filesystem went read-only after ~25 h; drive SMART healthy; probable Samsung
-NVMe APST dropout. APST disabled. Ran **2 days 55 min clean** before a planned
-reboot on 2026-11-03 — treated as fixed, still watching. **If it recurs: console
-first, run `dmesg` before rebooting** (a read-only disk can't save its log), then
-reseat the 970, then suspect the PSU. Write-up: `docs/sessions/2026-11-01.md`.
+Probable Samsung NVMe APST dropout; APST disabled. **Passed:** 2026-11-09 — up
+5 days 23 h, no NVMe/ext4 errors. If it ever recurs: console first, `dmesg` before
+rebooting, then reseat the 970, then suspect the PSU. Write-up:
+`docs/sessions/2026-11-01.md`.
 
 ## Open items
 
