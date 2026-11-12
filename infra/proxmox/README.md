@@ -29,9 +29,8 @@ M2_1 NVMe. This slot costs zero SATA ports on the MPG Z390 Gaming Plus — see
 - [x] Enterprise repos off, no-subscription on, `apt full-upgrade` — 2026-10-31
 - [ ] **Cap ZFS ARC.** Total RAM is 32GB and it is the real ceiling on this
       build. Left uncapped, ARC will starve the HA VM and model containers.
-- [ ] NVIDIA driver on the host — in progress: headers, `build-essential`, `dkms`
-      installed; nouveau blacklisted (`/etc/modprobe.d/blacklist-nouveau.conf`).
-      595.104.02 installer run with DKMS 2026-11-09 (ADR 0007); verification pending
+- [x] NVIDIA driver on the host — 595.104.02 via `.run` + DKMS (ADR 0007), 2026-11-11.
+      nouveau blacklisted (`/etc/modprobe.d/blacklist-nouveau.conf`). `tmux` installed
 - [ ] Create the ZFS mirror (IronWolf dry run → 14TB via `zpool replace`)
 - [ ] ~~Configure HDD spindown if living-room placement stands~~ — server is going
       elsewhere (ADR 0005). Revisit only if noise matters in the chosen room

@@ -13,9 +13,9 @@ that Node A can stay a gaming/theater machine.
 
 ## Current status
 
-**Phase 1 (storage) and Phase 2 (GPU driver) in progress.** Proxmox VE 9.2.24 on
+**Phase 1 (storage) and Phase 2 (model serving) in progress.** Proxmox VE 9.2.24 on
 the 970, web UI `https://192.168.1.169:8006`, SSH `root@192.168.1.169`. The NVIDIA
-driver installer has run (verification pending); data drives are being swapped for 2x 14TB recerts.
+driver is installed (595.104.02, verified); data drives are being swapped for 2x 14TB recerts.
 **Read `HANDOFF.md` first** for the current step and open items.
 
 ## Hard constraints (do not design around these being flexible)

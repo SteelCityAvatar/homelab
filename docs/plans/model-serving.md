@@ -31,10 +31,10 @@ build. Items marked ⚠️ get verified at the time, not assumed.
 - [x] Install build tools + kernel headers — `proxmox-default-headers`,
       `proxmox-headers-$(uname -r)`, `build-essential`, `dkms` (2026-11-03)
 - [x] Blacklist `nouveau`, rebuild initramfs, reboot — nouveau no longer loads (2026-11-03)
-- [x] Install the driver — **595.104.02** (`.run`, DKMS), run 2026-11-09.
-      ⚠️ Success not yet confirmed; the next item is the check
-- [ ] Verify: `nvidia-smi` lists the GPU(s), driver version, temps, idle power
-      → also fixes the "GPU idles warm with no driver" note
+- [x] Install the driver — **595.104.02** (`.run`, DKMS), 2026-11-11. The first attempt
+      (2026-11-09) was killed by a dropped SSH session: run installers inside `tmux`
+- [x] Verify: `nvidia-smi` → RTX 2070 SUPER, 595.104.02, CUDA 13.2; idle P8, 16 W,
+      28 °C (2026-11-11). `dkms status` → installed for 7.0.14-26-pve
 - [ ] Make sure `/dev/nvidia-uvm*` exist at boot (⚠️ may need `nvidia-persistenced`
       or a udev/modprobe rule)
 - [ ] **PSU load test:** stress the 2070 Super for ~30 min while watching

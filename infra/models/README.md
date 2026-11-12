@@ -16,7 +16,8 @@ embeddings is optional later.
 | Item | Value |
 |---|---|
 | Source | NVIDIA `.run` installer, DKMS (ADR 0007) |
-| Version | **595.104.02** — installer run 2026-11-09; ⚠️ not yet verified with `nvidia-smi` |
+| Version | **595.104.02** — installed 2026-11-11; verified with `nvidia-smi` and `dkms status` |
+| CUDA | 13.2 is the newest this driver supports; container CUDA libraries must not be newer |
 | Containers | Same version, installed with `--no-kernel-module` |
 
 ## Files

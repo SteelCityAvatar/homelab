@@ -16,7 +16,7 @@ desktop that occasionally lends its GPU.
 | Hardware | i7-13700K · RTX 4090 24GB · 32GB DDR5 | i7-8700K · RTX 2070 Super 8GB · 32GB DDR4 |
 | OS | Windows 11 | Proxmox VE 9.2 |
 | Availability | Low (gaming, reboots) | High (always on) |
-| Status | Existing, unchanged | **Building — Phase 1 (storage) and Phase 2 (GPU driver) in progress** |
+| Status | Existing, unchanged | **Building — Phase 1 (storage) and Phase 2 (model serving) in progress** |
 
 ## What it's for
 
@@ -79,7 +79,7 @@ Full detail in [`docs/architecture.md`](docs/architecture.md).
 |---|---|---|
 | 0 | Verify hardware (POST, RAM, PSU, bays, placement) | **Done** |
 | 1 | Storage foundation: Proxmox, ZFS mirror, data migration, backup | **In progress** — Proxmox installed and updated; data drives moving to 2× 14TB |
-| 2 | Model serving: NVIDIA driver, GPU LXCs, Ollama, LiteLLM fallback chain | **Started** — driver installer run, verification pending |
+| 2 | Model serving: NVIDIA driver, GPU LXCs, Ollama, LiteLLM fallback chain | **In progress** — NVIDIA driver installed and verified; PSU load test next |
 | 3 | Home automation: Home Assistant VM + gateway integration | Planned |
 | 4 | Polish: UPS, 2.5GbE node-to-node link, media server | Planned |
 
