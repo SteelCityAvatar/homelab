@@ -18,6 +18,7 @@ embeddings is optional later.
 | Source | NVIDIA `.run` installer, DKMS (ADR 0007) |
 | Version | **595.104.02** — installed 2026-11-11; verified with `nvidia-smi` and `dkms status` |
 | CUDA | 13.2 is the newest this driver supports; container CUDA libraries must not be newer |
+| Kernel module | Open (`Dual MIT/GPL`); uses GSP firmware `gsp_tu10x.bin` |
 | Containers | Same version, installed with `--no-kernel-module` |
 
 ## Files

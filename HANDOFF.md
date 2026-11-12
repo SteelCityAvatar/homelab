@@ -27,8 +27,8 @@ Plan: `docs/plans/model-serving.md`, Phase 1. Detail: `docs/sessions/2026-11-03.
       attempt was killed by a dropped SSH session
 - [x] `nvidia-smi`: RTX 2070 SUPER, 595.104.02, CUDA 13.2; idle P8, 16 W, 28 °C
 - [x] `dkms status`: `nvidia/595.104.02, 7.0.14-26-pve, x86_64: installed`
-- [ ] Checks ⚠️: install record `/var/lib/nvidia/log` rewritten cleanly; kernel-module
-      flavor (open vs proprietary); `/dev/nvidia-uvm` present after a reboot
+- [x] Open kernel modules (`Dual MIT/GPL`); install record `/var/lib/nvidia/log` clean
+- [ ] `/dev/nvidia-uvm` present after a reboot ⚠️ (check during LXC setup)
 - [ ] **PSU load test** (~30 min GPU stress) — gates the model container ← next
 - [ ] Model-serving LXC → Ollama → gateway
 
