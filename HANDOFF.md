@@ -1,6 +1,6 @@
 # Handoff — session context
 
-Last updated 2026-11-04. Detailed history: `docs/sessions/`.
+Last updated 2026-11-11. Detailed history: `docs/sessions/`.
 
 **This file is transitional.** Everything durable belongs in `spec.md`, `bom.md`,
 `ROADMAP.md` or an ADR. Fold items in as they close, and delete this file rather
@@ -15,15 +15,17 @@ Boot + VMs on the 970 EVO Plus (ext4 + LVM-thin). Kernel parameter
 
 ## Current work — NVIDIA driver on the host
 
-Plan: `docs/plans/model-serving.md`, Phase 1. Detail: `docs/sessions/2026-11-03.md`.
+Plan: `docs/plans/model-serving.md`, Phase 1. Detail: `docs/sessions/2026-11-03.md`
+(prep) and `docs/sessions/2026-11-09.md` (install).
 
 - [x] Headers + build tools: `proxmox-default-headers`, `proxmox-headers-$(uname -r)`,
       `build-essential`, `dkms`
 - [x] nouveau blacklisted, initramfs rebuilt, rebooted — nouveau no longer loads
 - [x] Version chosen: **595.104.02** (ADR 0007: `.run` + DKMS, 2070 Super only)
-- [ ] Download the installer to `/root` — **not downloaded yet** (checked 2026-11-09)
-- [ ] **Run the installer with DKMS** ← next
-- [ ] `nvidia-smi` shows the 2070 Super
+- [x] Installer downloaded to `/root` (2026-11-09)
+- [x] Installer run with `--dkms` (2026-11-09): X-path and 32-bit warnings expected;
+      DKMS registration Yes. ⚠️ Whether the build succeeded wasn't recorded
+- [ ] **`nvidia-smi` shows the 2070 Super; `dkms status` shows `installed`** ← next
 - [ ] PSU load test (~30 min GPU stress) — gates the model container
 - [ ] Model-serving LXC → Ollama → gateway
 
@@ -53,7 +55,7 @@ rebooting, then reseat the 970, then suspect the PSU. Write-up:
 | 1 | NVIDIA driver install | Current work, above |
 | 2 | Order / burn in the 14TB drives | Return IronWolfs by ≈ 2026-11-20 |
 | 3 | DHCP reservation for `.169` | On the router — prevents an address conflict |
-| 4 | Security basics | Before real data or Home Assistant: check no port forwards + UPnP off; strong root password in a manager; SSH keys; web UI 2FA; Proxmox firewall |
+| 4 | Security basics | Before real data or Home Assistant: check no port forwards + UPnP off; strong root password in a manager; SSH keys (not set up: the desktop has no key pair yet, `docs/sessions/2026-11-07.md`); web UI 2FA; Proxmox firewall |
 | 5 | Home Assistant VM | `docs/plans/home-assistant.md`; no dependencies |
 | 6 | Which room, and the cable route | ADR 0005 left both TBD |
 | 7 | Physical bay recount | Spec says 4; confirm when installing the 14TB drives |

@@ -31,7 +31,7 @@ M2_1 NVMe. This slot costs zero SATA ports on the MPG Z390 Gaming Plus — see
       build. Left uncapped, ARC will starve the HA VM and model containers.
 - [ ] NVIDIA driver on the host — in progress: headers, `build-essential`, `dkms`
       installed; nouveau blacklisted (`/etc/modprobe.d/blacklist-nouveau.conf`).
-      595.104.02 next (ADR 0007)
+      595.104.02 installer run with DKMS 2026-11-09 (ADR 0007); verification pending
 - [ ] Create the ZFS mirror (IronWolf dry run → 14TB via `zpool replace`)
 - [ ] ~~Configure HDD spindown if living-room placement stands~~ — server is going
       elsewhere (ADR 0005). Revisit only if noise matters in the chosen room

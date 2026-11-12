@@ -16,7 +16,7 @@ embeddings is optional later.
 | Item | Value |
 |---|---|
 | Source | NVIDIA `.run` installer, DKMS (ADR 0007) |
-| Version | **595.104.02** — ⚠️ not yet installed (2026-11-04) |
+| Version | **595.104.02** — installer run 2026-11-09; ⚠️ not yet verified with `nvidia-smi` |
 | Containers | Same version, installed with `--no-kernel-module` |
 
 ## Files

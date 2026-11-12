@@ -67,7 +67,8 @@ Phases are gated. Do not start a phase until its blocker clears.
 Detailed plan: `docs/plans/model-serving.md`.
 
 - [ ] NVIDIA driver on the Proxmox host — **in progress**: headers + build tools in,
-      nouveau blacklisted; 595.104.02 `.run` with DKMS next (ADR 0007)
+      nouveau blacklisted; 595.104.02 `.run` with DKMS run 2026-11-09 (ADR 0007);
+      `nvidia-smi` verification pending
 - [ ] PSU load test under sustained GPU load (`bom.md` #23 c)
 - [ ] LXC with GPU device passthrough
 - [ ] Ollama (or llama.cpp) on the 2070 Super

@@ -31,7 +31,8 @@ build. Items marked ⚠️ get verified at the time, not assumed.
 - [x] Install build tools + kernel headers — `proxmox-default-headers`,
       `proxmox-headers-$(uname -r)`, `build-essential`, `dkms` (2026-11-03)
 - [x] Blacklist `nouveau`, rebuild initramfs, reboot — nouveau no longer loads (2026-11-03)
-- [ ] Install the driver — **595.104.02** (`.run`, DKMS). Next step
+- [x] Install the driver — **595.104.02** (`.run`, DKMS), run 2026-11-09.
+      ⚠️ Success not yet confirmed; the next item is the check
 - [ ] Verify: `nvidia-smi` lists the GPU(s), driver version, temps, idle power
       → also fixes the "GPU idles warm with no driver" note
 - [ ] Make sure `/dev/nvidia-uvm*` exist at boot (⚠️ may need `nvidia-persistenced`
