@@ -15,7 +15,9 @@ build. Items marked ⚠️ get verified at the time, not assumed.
 ## Phase 0 — Gates and decisions (before touching drivers)
 
 - [ ] **PSU re-test under GPU load** — `bom.md` #23 condition (c). Needs the driver
-      first, so it moves to the end of Phase 1 (below), before any container.
+      and a CUDA program to create the load, so it runs **inside the model-serving
+      LXC, before Ollama** (Phase 2). Decided 2026-11-11: keeps CUDA libraries off
+      the host. Creating the container puts no load on the GPU.
 - [x] **Decide about the GTX 1060.** NVIDIA's **580 driver branch is the last to
       support Pascal** (GTX 10-series); newer branches and CUDA 13 drop it. One host
       runs **one** driver for both cards, so keeping the 1060 pins the whole server to
@@ -37,9 +39,7 @@ build. Items marked ⚠️ get verified at the time, not assumed.
       28 °C (2026-11-11). `dkms status` → installed for 7.0.14-26-pve
 - [ ] Make sure `/dev/nvidia-uvm*` exist at boot (⚠️ may need `nvidia-persistenced`
       or a udev/modprobe rule)
-- [ ] **PSU load test:** stress the 2070 Super for ~30 min while watching
-      `nvidia-smi` and listening to the PSU. Any reboot or shutdown under load
-      → replace the PSU (`bom.md` #23 b)
+- PSU load test → moved into Phase 2, before Ollama (2026-11-11)
 - [ ] **Kernel-update caveat:** every new Proxmox kernel needs the module rebuilt.
       DKMS automates it; the `.run` installer with DKMS does too. Test once:
       reboot after a kernel update and check `nvidia-smi`.
@@ -53,6 +53,9 @@ build. Items marked ⚠️ get verified at the time, not assumed.
 - [ ] Install the **same driver version** inside the container, userspace only
       (no kernel module)
 - [ ] Verify `nvidia-smi` works **inside** the container
+- [ ] **PSU load test — gates Ollama:** ~30 min of large matrix multiplies (PyTorch) in
+      one tmux pane, `nvidia-smi` in another, listening to the PSU. Any reboot or
+      shutdown under load → replace the PSU (`bom.md` #23 b)
 - [ ] Install Ollama; bind it to the LAN (`OLLAMA_HOST=0.0.0.0`)
 - [ ] Pull a 7–8B model at Q4 (8 GB VRAM ceiling); test a prompt; watch VRAM in
       `nvidia-smi`

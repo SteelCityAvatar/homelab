@@ -68,8 +68,8 @@ Detailed plan: `docs/plans/model-serving.md`.
 
 - [x] NVIDIA driver on the Proxmox host — 595.104.02 `.run` with DKMS (ADR 0007),
       verified 2026-11-11
-- [ ] PSU load test under sustained GPU load (`bom.md` #23 c)
 - [ ] LXC with GPU device passthrough
+- [ ] PSU load test under sustained GPU load, run inside that LXC (`bom.md` #23 c)
 - [ ] Ollama (or llama.cpp) on the 2070 Super
 - [ ] Ollama on the desktop, bound to LAN
 - [ ] LiteLLM gateway with health-check + fallback chain

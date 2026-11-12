@@ -29,8 +29,9 @@ Plan: `docs/plans/model-serving.md`, Phase 1. Detail: `docs/sessions/2026-11-03.
 - [x] `dkms status`: `nvidia/595.104.02, 7.0.14-26-pve, x86_64: installed`
 - [x] Open kernel modules (`Dual MIT/GPL`); install record `/var/lib/nvidia/log` clean
 - [ ] `/dev/nvidia-uvm` present after a reboot ⚠️ (check during LXC setup)
-- [ ] **PSU load test** (~30 min GPU stress) — gates the model container ← next
-- [ ] Model-serving LXC → Ollama → gateway
+- [ ] **Model-serving LXC** (Debian 13 template, GPU passed in) ← next
+- [ ] **PSU load test inside the LXC** (~30 min CUDA stress) — gates Ollama
+- [ ] Ollama → desktop endpoint → gateway
 
 DKMS built the module for 7.0.14-26 only; the 7.0.2-6 fallback kernel boots
 without the NVIDIA module (recovery only). Run long installs over SSH inside `tmux`.
@@ -55,7 +56,7 @@ rebooting, then reseat the 970, then suspect the PSU. Write-up:
 
 | # | Item | Notes |
 |---|---|---|
-| 1 | PSU load test, then the model-serving LXC | Current work, above. Driver installed 2026-11-11 |
+| 1 | Model-serving LXC, then the PSU load test inside it | Current work, above. Driver installed 2026-11-11 |
 | 2 | Order / burn in the 14TB drives | Return IronWolfs by ≈ 2026-11-20 |
 | 3 | DHCP reservation for `.169` | On the router — prevents an address conflict |
 | 4 | Security basics | Before real data or Home Assistant: check no port forwards + UPnP off; strong root password in a manager; SSH keys (not set up: the desktop has no key pair yet, `docs/sessions/2026-11-07.md`); web UI 2FA; Proxmox firewall |
