@@ -63,7 +63,9 @@ information. Summary:
 - `docs/notes/` holds reference explanations (the *why* behind concepts: apt,
   ZFS and RAM, PSI graphs, networking, PSU cables). **Gitignored — local only.**
   When something is explained in a session and worth keeping, add or extend a
-  note there rather than in the session log.
+  note there rather than in the session log. **Every note starts with an
+  `## Acronyms` list** spelling out each acronym it uses; keep it (and the full list
+  in `docs/notes/README.md`) in sync when a note gains new terms.
 - Anything unverified is marked `TBD` or `⚠️`. Do not silently fill these in
   with assumptions; flag them.
 
