@@ -65,7 +65,9 @@ information. Summary:
   When something is explained in a session and worth keeping, add or extend a
   note there rather than in the session log. **Every note starts with an
   `## Acronyms` list** spelling out each acronym it uses; keep it (and the full list
-  in `docs/notes/README.md`) in sync when a note gains new terms.
+  in `docs/notes/README.md`) in sync when a note gains new terms. The notes also
+  have a phone copy; after changing them, rebuild and republish it (steps in
+  `docs/notes/README.md`).
 - Anything unverified is marked `TBD` or `⚠️`. Do not silently fill these in
   with assumptions; flag them.
 
