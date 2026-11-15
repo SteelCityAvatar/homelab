@@ -1,6 +1,6 @@
 # Handoff — session context
 
-Last updated 2026-11-11. Detailed history: `docs/sessions/`.
+Last updated 2026-11-14. Detailed history: `docs/sessions/`.
 
 **This file is transitional.** Everything durable belongs in `spec.md`, `bom.md`,
 `ROADMAP.md` or an ADR. Fold items in as they close, and delete this file rather
@@ -29,7 +29,9 @@ Plan: `docs/plans/model-serving.md`, Phase 1. Detail: `docs/sessions/2026-11-03.
 - [x] `dkms status`: `nvidia/595.104.02, 7.0.14-26-pve, x86_64: installed`
 - [x] Open kernel modules (`Dual MIT/GPL`); install record `/var/lib/nvidia/log` clean
 - [ ] `/dev/nvidia-uvm` present after a reboot ⚠️ (check during LXC setup)
-- [ ] **Model-serving LXC** (Debian 13 template, GPU passed in) ← next
+- [x] Model-serving LXC created and started: ID 200 (`docs/sessions/2026-11-14.md`).
+      ⚠️ confirm it has a `192.168.1.x` address
+- [ ] **Pass the GPU into container 200**; driver user-space half; `nvidia-smi` inside ← next
 - [ ] **PSU load test inside the LXC** (~30 min CUDA stress) — gates Ollama
 - [ ] Ollama → desktop endpoint → gateway
 

@@ -46,8 +46,9 @@ build. Items marked ⚠️ get verified at the time, not assumed.
 
 ## Phase 2 — Model-serving LXC
 
-- [ ] Create an **unprivileged** LXC from the Debian 13 template: ~4 cores, 8 GB
-      RAM, disk sized for models (⚠️ a 7–8B Q4 model is ~5 GB; plan 100+ GB)
+- [x] Create an **unprivileged** LXC from the Debian 13 template — ID **200**,
+      `model-serving`: 4 cores, 8 GB RAM, 100 GB thin disk, nesting on (2026-11-14).
+      ⚠️ IPv4 DHCP lease not yet confirmed
 - [ ] Pass the GPU devices in: Resources → Add → **Device Passthrough**
       (`/dev/nvidia0`, `/dev/nvidiactl`, `/dev/nvidia-uvm`, `/dev/nvidia-uvm-tools`)
 - [ ] Install the **same driver version** inside the container, userspace only
