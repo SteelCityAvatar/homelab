@@ -21,6 +21,16 @@ M2_1 NVMe. This slot costs zero SATA ports on the MPG Z390 Gaming Plus — see
 | SSH | `ssh root@192.168.1.169` — works when the web UI doesn't |
 | Kernel params | `nvme_core.default_ps_max_latency_us=0` — disables Samsung NVMe APST deep sleep after a read-only-root incident (2026-11-01, `docs/sessions/2026-11-01.md`) |
 
+## Guests
+
+IDs: VMs in the 100s, containers in the 200s.
+
+| ID | Type | Name | Resources (limits) | Storage | Network | Created |
+|---|---|---|---|---|---|---|
+| 200 | LXC, unprivileged, nesting | `model-serving` | 4 cores, 8 GB RAM, 512 MB swap | 100 GB thin, `local-lvm` | `vmbr0`, DHCP | 2026-11-14 |
+
+Template: `debian-13-standard_13.6-1_amd64.tar.zst` on `local`.
+
 ## Post-install tasks
 
 - [x] Log in to the web UI from the desktop — 2026-10-29

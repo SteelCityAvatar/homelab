@@ -62,11 +62,12 @@ that could be re-acquired wastes money during a shortage.
 | Tier | Contents | Redundancy | Media |
 |---|---|---|---|
 | Boot | Proxmox OS | None (rebuildable) | NVMe (M2_1) |
-| Hot | Model weights, datasets, VM/LXC disks | None | NVMe (M2_2) |
+| Hot | Model weights, datasets, VM/LXC disks | None | NVMe (M2_1, shared with boot — ADR 0006) |
 | Vault | Photos, documents, code — irreplaceable | ZFS mirror | 2x HDD |
 | Bulk | Media library — re-acquirable | None | 2x HDD |
 
-Open: capacity per drive, current data volume (~5TB?), Vault backup target,
+Capacity: 2x 14TB recertified drives for the first mirror (decided 2026-11-01).
+Open: Vault backup target,
 offsite / 3-2-1 strategy.
 
 ---

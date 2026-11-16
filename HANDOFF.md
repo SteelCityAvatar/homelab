@@ -1,6 +1,6 @@
 # Handoff — session context
 
-Last updated 2026-11-14. Detailed history: `docs/sessions/`.
+Last updated 2026-11-16. Detailed history: `docs/sessions/`.
 
 **This file is transitional.** Everything durable belongs in `spec.md`, `bom.md`,
 `ROADMAP.md` or an ADR. Fold items in as they close, and delete this file rather
@@ -13,25 +13,22 @@ Web UI `https://192.168.1.169:8006` · SSH `ssh root@192.168.1.169`.
 Boot + VMs on the 970 EVO Plus (ext4 + LVM-thin). Kernel parameter
 `nvme_core.default_ps_max_latency_us=0` (APST off, see incident below).
 
-## Current work — model serving, Phase 1 (driver done)
+## Current work — model serving, Phase 2 (the container)
 
-Plan: `docs/plans/model-serving.md`, Phase 1. Detail: `docs/sessions/2026-11-03.md`
-(prep), `2026-11-09.md` (interrupted attempt), `2026-11-11.md` (install).
+Plan: `docs/plans/model-serving.md`. Latest log: `docs/sessions/2026-11-14.md`.
 
-- [x] Headers + build tools: `proxmox-default-headers`, `proxmox-headers-$(uname -r)`,
-      `build-essential`, `dkms`
-- [x] nouveau blacklisted, initramfs rebuilt, rebooted — nouveau no longer loads
-- [x] Version chosen: **595.104.02** (ADR 0007: `.run` + DKMS, 2070 Super only)
-- [x] Installer downloaded to `/root` (2026-11-09)
-- [x] **Driver installed 2026-11-11** (`.run --dkms`, inside `tmux`). The 2026-11-09
-      attempt was killed by a dropped SSH session
-- [x] `nvidia-smi`: RTX 2070 SUPER, 595.104.02, CUDA 13.2; idle P8, 16 W, 28 °C
-- [x] `dkms status`: `nvidia/595.104.02, 7.0.14-26-pve, x86_64: installed`
-- [x] Open kernel modules (`Dual MIT/GPL`); install record `/var/lib/nvidia/log` clean
-- [ ] `/dev/nvidia-uvm` present after a reboot ⚠️ (check during LXC setup)
-- [x] Model-serving LXC created and started: ID 200 (`docs/sessions/2026-11-14.md`).
-      ⚠️ confirm it has a `192.168.1.x` address
-- [ ] **Pass the GPU into container 200**; driver user-space half; `nvidia-smi` inside ← next
+- [x] **Host driver done** (plan Phase 1): NVIDIA 595.104.02, open kernel modules,
+      `.run` + DKMS, verified 2026-11-11 (`docs/sessions/2026-11-11.md`). The installer
+      is kept at `/root/NVIDIA-Linux-x86_64-595.104.02.run` for the container
+- [x] Container **200 `model-serving`** created and started 2026-11-14: Debian 13,
+      unprivileged, nesting, 4 cores, 8 GB, 100 GB thin on `local-lvm`, DHCP.
+      Enter with `pct enter 200` (no root password set)
+- [ ] ⚠️ Confirm the container has a `192.168.1.x` address:
+      `pct exec 200 -- ip -br a` ← next
+- [ ] `/dev/nvidia-uvm` exists on the host ⚠️ (may need `nvidia-modprobe -u` or
+      `nvidia-persistenced` at boot)
+- [ ] **Pass the GPU into container 200**; install the driver's user-space half
+      (`--no-kernel-module`); `nvidia-smi` inside
 - [ ] **PSU load test inside the LXC** (~30 min CUDA stress) — gates Ollama
 - [ ] Ollama → desktop endpoint → gateway
 
@@ -58,8 +55,8 @@ rebooting, then reseat the 970, then suspect the PSU. Write-up:
 
 | # | Item | Notes |
 |---|---|---|
-| 1 | Model-serving LXC, then the PSU load test inside it | Current work, above. Driver installed 2026-11-11 |
-| 2 | Order / burn in the 14TB drives | Return IronWolfs by ≈ 2026-11-20 |
+| 1 | GPU into container 200, then the PSU load test inside it | Current work, above |
+| 2 | Order / burn in the 14TB drives | ⚠️ Order status not recorded. **IronWolf return deadline ≈ 2026-11-20** — wipe first |
 | 3 | DHCP reservation for `.169` | On the router — prevents an address conflict |
 | 4 | Security basics | Before real data or Home Assistant: check no port forwards + UPnP off; strong root password in a manager; SSH keys (not set up: the desktop has no key pair yet, `docs/sessions/2026-11-07.md`); web UI 2FA; Proxmox firewall |
 | 5 | Home Assistant VM | `docs/plans/home-assistant.md`; no dependencies |

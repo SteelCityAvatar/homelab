@@ -1,6 +1,7 @@
 # Roadmap
 
-Phases are gated. Do not start a phase until its blocker clears.
+Phases are gated. Do not start a phase until its blocker clears. Phases 1 and 2 run
+in parallel: Phase 2 needs only Proxmox and the GPU, not the data drives.
 
 ---
 
@@ -62,13 +63,14 @@ Phases are gated. Do not start a phase until its blocker clears.
 
 ---
 
-## Phase 2 — Model serving
+## Phase 2 — Model serving  ← IN PROGRESS
 
 Detailed plan: `docs/plans/model-serving.md`.
 
 - [x] NVIDIA driver on the Proxmox host — 595.104.02 `.run` with DKMS (ADR 0007),
       verified 2026-11-11
-- [ ] LXC with GPU device passthrough
+- [ ] LXC with GPU device passthrough — container 200 `model-serving` created
+      2026-11-14; passthrough next
 - [ ] PSU load test under sustained GPU load, run inside that LXC (`bom.md` #23 c)
 - [ ] Ollama (or llama.cpp) on the 2070 Super
 - [ ] Ollama on the desktop, bound to LAN
