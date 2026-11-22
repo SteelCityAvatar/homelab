@@ -66,7 +66,8 @@ that could be re-acquired wastes money during a shortage.
 | Vault | Photos, documents, code — irreplaceable | ZFS mirror | 2x HDD |
 | Bulk | Media library — re-acquirable | None | 2x HDD |
 
-Capacity: 2x 14TB recertified drives for the first mirror (decided 2026-11-01).
+Capacity: the first mirror is 2x 4TB IronWolf (kept, 2026-11-22); 2x 14TB
+recertified drives are planned later for bulk.
 Open: Vault backup target, offsite / 3-2-1 strategy.
 
 ---

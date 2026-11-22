@@ -39,17 +39,17 @@ without the NVIDIA module (recovery only). Run long installs over SSH inside `tm
 ⚠️ An idle tmux session `nvidia` may still be running on the host; harmless, close
 with `tmux kill-session -t nvidia`.
 
-## Storage — drives being swapped
+## Storage — IronWolfs kept
 
-- **Decided: replace the 2x 4TB IronWolfs with 2x 14TB recerts** (Toshiba MG07
-  favored). ⚠️ Order status not recorded.
-- IronWolfs were to act as a **temporary dry-run mirror** and be wiped and returned
-  by ≈ 2026-11-20. ⚠️ **That date has passed (as of 2026-11-22) and the outcome is
-  not recorded**: returned, or kept? No pool has been created on them, so they hold
-  no data either way. If kept, the plan changes: they can stay as the dry-run pair
-  or become a second, small mirror.
-- When the 14TB drives arrive: burn in (SMART long + full-surface pass) inside their
-  return window, then `zpool replace` one IronWolf at a time → `autoexpand`.
+- **The 2x 4TB IronWolfs are kept** (2026-11-22). The 2026-11-01 plan to return
+  them lapsed with the return window. No pool exists on them yet.
+- ⚠️ **Proposed, not yet confirmed:** they become the Vault mirror (~4TB usable) for
+  irreplaceable data only; media stays on the desktop's 8TB. 2x 14TB recerts
+  (Toshiba MG07 favored) come later as the bulk tier in SATA3/4. This matches the
+  two-tier design in `docs/architecture.md`.
+- ⚠️ 14TB order status still not recorded.
+- Before data: burn in the IronWolfs (SMART long + full-surface pass), confirm the
+  irreplaceable data fits in ~4TB, cap ARC.
 
 ## Incident — read-only root (2026-11-01): closed
 
@@ -63,7 +63,7 @@ rebooting, then reseat the 970, then suspect the PSU. Write-up:
 | # | Item | Notes |
 |---|---|---|
 | 1 | GPU into container 200, then the PSU load test inside it | Current work, above |
-| 2 | Storage: 14TB order and the IronWolfs | ⚠️ Neither the 14TB order nor the IronWolf return (window ended ≈ 2026-11-20) is recorded. Settle both, then update `bom.md` #11/#24, `spec.md` and `ROADMAP.md` |
+| 2 | Storage plan | IronWolfs kept. ⚠️ Confirm the proposed plan (IronWolfs = Vault mirror, 14TB pair later for media) and the 14TB order status; then burn in the IronWolfs |
 | 3 | DHCP reservation for `.169` | On the router — prevents an address conflict |
 | 4 | Security basics | Before real data or Home Assistant: check no port forwards + UPnP off; strong root password in a manager; SSH keys (not set up: the desktop has no key pair yet, `docs/sessions/2026-11-07.md`); web UI 2FA; Proxmox firewall |
 | 5 | Home Assistant VM | `docs/plans/home-assistant.md`; no dependencies |

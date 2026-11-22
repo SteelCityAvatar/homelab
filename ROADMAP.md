@@ -29,17 +29,21 @@ in parallel: Phase 2 needs only Proxmox and the GPU, not the data drives.
 
 ## Phase 1 — Storage foundation  ← CURRENT
 
-**Data drives:** swapping the 2x 4TB IronWolfs for **2x 14TB recertified** drives
-(decided 2026-11-01). The IronWolfs are a temporary dry-run mirror, returned by
-≈ 2026-11-20. Boot + hot tier on the 970 (ADR 0006).
+**Data drives:** the 2x 4TB IronWolfs are **kept** (the return window lapsed
+2026-11-20; this supersedes the 2026-11-01 plan to swap them out). ⚠️ Proposed, not
+yet confirmed: they become the **Vault mirror** (~4TB usable, irreplaceable data
+only), and 2x 14TB recertified drives are bought later for bulk media. Boot + hot
+tier on the 970 (ADR 0006).
 
 - [x] Confirm the 970 Evo Plus capacity — **1TB**, covers boot + hot tier (2026-10-24)
-- [ ] Order the 2x 14TB recerts — ⚠️ status not recorded
+- [ ] Burn in the IronWolfs (SMART long test, then a full-surface pass) before data
+      goes on them
+- [ ] ⚠️ Confirm the irreplaceable data fits in ~4TB
+- [ ] Order the 2x 14TB recerts — ⚠️ status not recorded; no longer urgent
 - [ ] Burn in the 14TB drives **inside their return window** — SMART long test,
       then a full-surface write/read pass. A drive that dies in week one goes back
       to the seller instead of through RMA
-- [ ] Wipe and return the IronWolfs by ≈ 2026-11-20 — ⚠️ date passed; outcome not
-      recorded as of 2026-11-22
+- [x] ~~Wipe and return the IronWolfs~~ — not returned; kept (2026-11-22)
 - [x] SMART check on the 970 — healthy (2026-11-01: 0 media errors, 1% used)
 - [x] Swap NVMe drives between machines (ADR 0006) — 970 now in the server.
       Desktop confirmed stable on the 9100 Pro (2026-10-27) and it was a clone,
@@ -53,9 +57,10 @@ in parallel: Phase 2 needs only Proxmox and the GPU, not the data drives.
 - [ ] Reserve 192.168.1.169 for the server in the router (DHCP reservation)
 - [x] Switch to the no-subscription repository and update — 2026-10-31, VE 9.2.24,
       rebooted onto kernel 7.0.14-26
-- [ ] Create the mirror (IronWolfs as a dry run → `zpool replace` with the 14TBs)
+- [ ] Create the mirror on the IronWolfs
 - [ ] Cap ZFS ARC (32GB total RAM)
-- [ ] Migrate data from the desktop's 8TB onto the 14TB mirror
+- [ ] Migrate irreplaceable data from the desktop's 8TB onto the mirror (media waits
+      for the bulk drives)
 - [ ] Set up a Vault backup **off the server** — bom.md #23 condition (a) blocks
       deleting the desktop copies until this exists
 - [ ] Later: a second mirror pair as needed (2 bays + 2 SATA ports free)

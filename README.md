@@ -78,7 +78,7 @@ Full detail in [`docs/architecture.md`](docs/architecture.md).
 | Phase | Goal | Status |
 |---|---|---|
 | 0 | Verify hardware (POST, RAM, PSU, bays, placement) | **Done** |
-| 1 | Storage foundation: Proxmox, ZFS mirror, data migration, backup | **In progress** — Proxmox installed and updated; data drives moving to 2× 14TB |
+| 1 | Storage foundation: Proxmox, ZFS mirror, data migration, backup | **In progress** — Proxmox installed and updated; ZFS mirror on 2× 4TB next |
 | 2 | Model serving: NVIDIA driver, GPU LXCs, Ollama, LiteLLM fallback chain | **In progress** — NVIDIA driver installed and verified; model-serving container created, GPU passthrough next |
 | 3 | Home automation: Home Assistant VM + gateway integration | Planned |
 | 4 | Polish: UPS, 2.5GbE node-to-node link, media server | Planned |

@@ -16,8 +16,8 @@ that Node A can stay a gaming/theater machine.
 **Phase 1 (storage) and Phase 2 (model serving) in progress.** Proxmox VE 9.2.24 on
 the 970, web UI `https://192.168.1.169:8006`, SSH `root@192.168.1.169`. The NVIDIA
 driver is installed (595.104.02, verified) and the model-serving container (ID 200)
-exists; GPU passthrough is next. Data drives: 2x 14TB recerts planned, order and
-IronWolf return status unrecorded.
+exists; GPU passthrough is next. Data drives: the 2x 4TB IronWolfs are kept; 2x 14TB
+recerts are a later purchase (plan in `HANDOFF.md`, not yet confirmed).
 **Read `HANDOFF.md` first** for the current step and open items.
 
 ## Hard constraints (do not design around these being flexible)

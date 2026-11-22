@@ -41,7 +41,7 @@ model over LAN when free; unavailable during gaming.
 | Case | Cooler Master HAF XB EVO | 4x 3.5" per manufacturer spec. ⚠️ Not physically recounted |
 | CPU cooler | Existing Cooler Master tower heatsink (~2019) + new 120mm fan | Fan is 4-pin PWM on `CPU_FAN`. Its 5V ARGB lead is left unplugged — never into the 12V `JRGB` header. Paste: Kryonaut — good contact confirmed, CPU 38°C during MemTest86 (2026-10-26) |
 | Case fans | 2x be quiet! 140mm PWM (front intake) + stock 120mm (rear exhaust) | Front on `SYS_FAN` headers, PWM mode. Rear is old — ⚠️ plug type unknown; DC mode if 3-pin. 2x140 in vs 1x120 out = slight positive pressure |
-| HDD x2 | Seagate IronWolf 4TB (CMR NAS) | Bought new 2026-10-21. On SATA1/SATA2, powered by the factory-attached SATA cable; detected 2026-10-25. Initialized as GPT by Windows — harmless, wiped at ZFS creation. Being replaced by 2x 14TB recerts (decided 2026-11-01). ⚠️ Return outcome not recorded as of 2026-11-22 |
+| HDD x2 | Seagate IronWolf 4TB (CMR NAS) | Bought new 2026-10-21. On SATA1/SATA2, powered by the factory-attached SATA cable; detected 2026-10-25. Initialized as GPT by Windows — harmless, wiped at ZFS creation. **Kept** (2026-11-22) — the 2026-11-01 plan to return them lapsed with the return window. ⚠️ Burn-in pending |
 | NVMe | Samsung 970 Evo Plus **1TB** (PCIe 3.0) | Installed in M2_1. Holds boot + hot tier, so M2_2 stays free. **Proxmox VE 9.2 installed 2026-10-29** (ext4 + LVM-thin); the old Windows copy is gone |
 
 ### Motherboard capability (verified)
@@ -77,19 +77,21 @@ model over LAN when free; unavailable during gaming.
 M2_1  -> 970 Evo Plus 1TB: boot + hot tier       costs 0 SATA ports
 M2_2  -> free for now                        (would cost SATA5, SATA6)
 
-SATA1 -> 14TB recert   \__ ZFS mirror (IronWolf 4TB pair until the 14TBs arrive)
-SATA2 -> 14TB recert   /
-SATA3 -> free  \__ 2 bays + 2 ports free for later
+SATA1 -> IronWolf 4TB   \__ ZFS mirror: Vault (irreplaceable data)
+SATA2 -> IronWolf 4TB   /
+SATA3 -> free  \__ 2 bays + 2 ports for a later pair (2x 14TB planned, bulk media)
 SATA4 -> free  /
 
 PCIe x16 -> RTX 2070 Super
 PCIe x4  -> empty (GTX 1060 out, ADR 0007)
 ```
 
-**Capacity:** 2x 14TB mirrored = 14TB usable — all ~5TB of existing data, media
-included, with room to grow. The IronWolf pair (4TB usable) is a temporary dry run
-until the 14TBs arrive; nothing lives only on it. bom.md #23 condition (a) still
-applies: keep the desktop copy until a Vault backup exists off-server.
+**Capacity:** the IronWolf pair is kept (2026-11-22; the return window lapsed).
+Mirrored it gives ~4TB usable, ~3TB comfortably. ⚠️ Proposed: it holds the
+irreplaceable data only (photos, documents, code), and the re-acquirable media
+(most of the ~5TB) stays on the desktop's 8TB until a larger pair is added.
+⚠️ Confirm the irreplaceable portion fits. bom.md #23 condition (a) still applies:
+keep the desktop copy until a Vault backup exists off-server.
 
 The 970 is 1TB, so the hot tier shares M2_1 with boot and M2_2 stays free (ADR 0006).
 
