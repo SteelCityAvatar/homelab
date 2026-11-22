@@ -41,7 +41,7 @@ Template: `debian-13-standard_13.6-1_amd64.tar.zst` on `local`.
       build. Left uncapped, ARC will starve the HA VM and model containers.
 - [x] NVIDIA driver on the host — 595.104.02 via `.run` + DKMS (ADR 0007), 2026-11-11.
       nouveau blacklisted (`/etc/modprobe.d/blacklist-nouveau.conf`). `tmux` installed
-- [ ] Create the ZFS mirror (IronWolf dry run → 14TB via `zpool replace`)
+- [ ] Create the ZFS mirror on the IronWolfs (kept, 2026-11-22)
 - [ ] ~~Configure HDD spindown if living-room placement stands~~ — server is going
       elsewhere (ADR 0005). Revisit only if noise matters in the chosen room
 - [ ] Configure UPS integration and clean shutdown
