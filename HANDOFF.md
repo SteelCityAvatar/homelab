@@ -43,13 +43,14 @@ with `tmux kill-session -t nvidia`.
 
 - **The 2x 4TB IronWolfs are kept** (2026-11-22). The 2026-11-01 plan to return
   them lapsed with the return window. No pool exists on them yet.
-- ⚠️ **Proposed, not yet confirmed:** they become the Vault mirror (~4TB usable) for
-  irreplaceable data only; media stays on the desktop's 8TB. 2x 14TB recerts
-  (Toshiba MG07 favored) come later as the bulk tier in SATA3/4. This matches the
-  two-tier design in `docs/architecture.md`.
-- ⚠️ 14TB order status still not recorded.
-- Before data: burn in the IronWolfs (SMART long + full-surface pass), confirm the
-  irreplaceable data fits in ~4TB, cap ARC.
+- **Decided 2026-11-22:** they become the Vault mirror (~4TB usable). 2x 14TB recerts
+  (Toshiba MG07 favored) are **not ordered**; a later purchase, in SATA3/4.
+- ⚠️ The irreplaceable data has not been measured and may exceed 4TB. Rule: the
+  mirror takes data in priority order (what can never be recreated first: personal
+  photos and video, documents, code). Anything that doesn't fit remains a **single
+  copy** on the desktop's 8TB until the larger pair exists.
+- Before data: measure folder sizes on the desktop, burn in the IronWolfs (SMART
+  long + full-surface pass), cap ARC.
 
 ## Incident — read-only root (2026-11-01): closed
 
@@ -63,7 +64,7 @@ rebooting, then reseat the 970, then suspect the PSU. Write-up:
 | # | Item | Notes |
 |---|---|---|
 | 1 | GPU into container 200, then the PSU load test inside it | Current work, above |
-| 2 | Storage plan | IronWolfs kept. ⚠️ Confirm the proposed plan (IronWolfs = Vault mirror, 14TB pair later for media) and the 14TB order status; then burn in the IronWolfs |
+| 2 | Storage | IronWolfs = Vault mirror (decided 2026-11-22); 14TB pair not ordered. Measure the irreplaceable data on the desktop, then burn in the IronWolfs |
 | 3 | DHCP reservation for `.169` | On the router — prevents an address conflict |
 | 4 | Security basics | Before real data or Home Assistant: check no port forwards + UPnP off; strong root password in a manager; SSH keys (not set up: the desktop has no key pair yet, `docs/sessions/2026-11-07.md`); web UI 2FA; Proxmox firewall |
 | 5 | Home Assistant VM | `docs/plans/home-assistant.md`; no dependencies |

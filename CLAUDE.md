@@ -17,7 +17,7 @@ that Node A can stay a gaming/theater machine.
 the 970, web UI `https://192.168.1.169:8006`, SSH `root@192.168.1.169`. The NVIDIA
 driver is installed (595.104.02, verified) and the model-serving container (ID 200)
 exists; GPU passthrough is next. Data drives: the 2x 4TB IronWolfs are kept; 2x 14TB
-recerts are a later purchase (plan in `HANDOFF.md`, not yet confirmed).
+recerts are a later purchase, not ordered (plan in `HANDOFF.md`).
 **Read `HANDOFF.md` first** for the current step and open items.
 
 ## Hard constraints (do not design around these being flexible)

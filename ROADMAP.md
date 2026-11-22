@@ -30,16 +30,16 @@ in parallel: Phase 2 needs only Proxmox and the GPU, not the data drives.
 ## Phase 1 — Storage foundation  ← CURRENT
 
 **Data drives:** the 2x 4TB IronWolfs are **kept** (the return window lapsed
-2026-11-20; this supersedes the 2026-11-01 plan to swap them out). ⚠️ Proposed, not
-yet confirmed: they become the **Vault mirror** (~4TB usable, irreplaceable data
-only), and 2x 14TB recertified drives are bought later for bulk media. Boot + hot
-tier on the 970 (ADR 0006).
+2026-11-20; this supersedes the 2026-11-01 plan to swap them out). They become the
+**Vault mirror** (~4TB usable), filled in priority order; 2x 14TB recertified drives
+are a later purchase (not ordered). Boot + hot tier on the 970 (ADR 0006).
 
 - [x] Confirm the 970 Evo Plus capacity — **1TB**, covers boot + hot tier (2026-10-24)
 - [ ] Burn in the IronWolfs (SMART long test, then a full-surface pass) before data
       goes on them
-- [ ] ⚠️ Confirm the irreplaceable data fits in ~4TB
-- [ ] Order the 2x 14TB recerts — ⚠️ status not recorded; no longer urgent
+- [ ] Measure the irreplaceable data on the desktop — ⚠️ may exceed 4TB; if so, rank
+      it and mirror the top of the list first
+- [ ] Order the 2x 14TB recerts — not ordered (2026-11-22); later
 - [ ] Burn in the 14TB drives **inside their return window** — SMART long test,
       then a full-surface write/read pass. A drive that dies in week one goes back
       to the seller instead of through RMA

@@ -28,7 +28,7 @@ Last updated 2026-11-22.
 | 16 | SATA data cables | 4 | 2 in use | SATA1 + SATA2 |
 | 17 | SATA power | **Factory-attached** SATA cable on the TX750M | In use | Verified with a multimeter 2026-10-25. Powers both IronWolfs |
 | 18 | USB stick | 8GB+ | On hand | Proxmox installer, written to a **new** stick (2026-10-29). The 32GB **Lexar is retired** — it failed three times; don't use it for installers |
-| 24 | HDD x2 | Seagate IronWolf 4TB (CMR NAS) | Installed | Bought new 2026-10-21. SATA1/SATA2, detected. **Kept** (2026-11-22): the 2026-11-01 plan to return them lapsed with the return window. ⚠️ Proposed role: Vault mirror, ~4TB usable. No pool created yet. ⚠️ Burn-in pending — manufacturer warranty still applies |
+| 24 | HDD x2 | Seagate IronWolf 4TB (CMR NAS) | Installed | Bought new 2026-10-21. SATA1/SATA2, detected. **Kept** (2026-11-22): the 2026-11-01 plan to return them lapsed with the return window. Role: Vault mirror, ~4TB usable (decided 2026-11-22). No pool created yet. ⚠️ Burn-in pending — manufacturer warranty still applies |
 | 25 | NVMe | Samsung 970 Evo Plus 1TB | Installed | M2_1. Boot + hot tier. Proxmox VE 9.2 installed 2026-10-29. **SMART healthy 2026-11-01** (0 media errors, 1% used, 13,973 h). Read-only-root incident 2026-11-01 → APST disabled; closed 2026-11-09, no recurrence through 2026-11-16 (12 days up) |
 
 ## Have — desktop
@@ -62,7 +62,7 @@ boots on it — so that bag is mixed, not uniformly wrong.
 | 19 | Ethernet cable | 1 | Soon | The server is borrowing the desktop's Cat6 (desktop on Wi-Fi meanwhile). Buy a dedicated cable once the room is chosen — length depends on it (ADR 0005) |
 | 22 | UPS | 1 | Before the Vault holds data | Protects ZFS + irreplaceable data; triggers clean shutdown |
 | 23 | PSU replacement | 1 | Deferred, still recommended | See below |
-| 11 | HDD, recertified enterprise | 2 | Later | 2x 14TB (Toshiba MG07ACA14TE favored; Exos X16 16TB alternative). Bulk media tier alongside the IronWolfs (#24), no longer a replacement. Burn in on arrival. ⚠️ Order status not recorded |
+| 11 | HDD, recertified enterprise | 2 | Later | 2x 14TB (Toshiba MG07ACA14TE favored; Exos X16 16TB alternative). Bulk media tier alongside the IronWolfs (#24), no longer a replacement. Burn in on arrival. **Not ordered** (2026-11-22) |
 | 14 | Anti-vibration HDD grommets/screws | 1 set | Optional | Meaningful in a mesh case |
 | 20 | 2.5GbE NIC | 2 | Optional, Phase 4 | One per machine. Check x1 slot access with the GPU installed |
 | 30 | Rear case fan | 1 | Optional | 120mm be quiet! PWM, if the stock exhaust rattles |

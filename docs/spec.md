@@ -87,10 +87,10 @@ PCIe x4  -> empty (GTX 1060 out, ADR 0007)
 ```
 
 **Capacity:** the IronWolf pair is kept (2026-11-22; the return window lapsed).
-Mirrored it gives ~4TB usable, ~3TB comfortably. ⚠️ Proposed: it holds the
-irreplaceable data only (photos, documents, code), and the re-acquirable media
-(most of the ~5TB) stays on the desktop's 8TB until a larger pair is added.
-⚠️ Confirm the irreplaceable portion fits. bom.md #23 condition (a) still applies:
+Mirrored it gives ~4TB usable, ~3TB comfortably. It holds irreplaceable data in
+priority order (personal photos and video, documents, code); re-acquirable media
+stays on the desktop's 8TB until a larger pair is added. ⚠️ The irreplaceable
+portion is unmeasured and may exceed 4TB; what doesn't fit stays a single copy. bom.md #23 condition (a) still applies:
 keep the desktop copy until a Vault backup exists off-server.
 
 The 970 is 1TB, so the hot tier shares M2_1 with boot and M2_2 stays free (ADR 0006).
