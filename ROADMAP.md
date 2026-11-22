@@ -34,11 +34,12 @@ in parallel: Phase 2 needs only Proxmox and the GPU, not the data drives.
 ≈ 2026-11-20. Boot + hot tier on the 970 (ADR 0006).
 
 - [x] Confirm the 970 Evo Plus capacity — **1TB**, covers boot + hot tier (2026-10-24)
-- [ ] Order the 2x 14TB recerts
+- [ ] Order the 2x 14TB recerts — ⚠️ status not recorded
 - [ ] Burn in the 14TB drives **inside their return window** — SMART long test,
       then a full-surface write/read pass. A drive that dies in week one goes back
       to the seller instead of through RMA
-- [ ] Wipe and return the IronWolfs by ≈ 2026-11-20
+- [ ] Wipe and return the IronWolfs by ≈ 2026-11-20 — ⚠️ date passed; outcome not
+      recorded as of 2026-11-22
 - [x] SMART check on the 970 — healthy (2026-11-01: 0 media errors, 1% used)
 - [x] Swap NVMe drives between machines (ADR 0006) — 970 now in the server.
       Desktop confirmed stable on the 9100 Pro (2026-10-27) and it was a clone,

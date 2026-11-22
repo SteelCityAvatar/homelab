@@ -67,8 +67,7 @@ that could be re-acquired wastes money during a shortage.
 | Bulk | Media library — re-acquirable | None | 2x HDD |
 
 Capacity: 2x 14TB recertified drives for the first mirror (decided 2026-11-01).
-Open: Vault backup target,
-offsite / 3-2-1 strategy.
+Open: Vault backup target, offsite / 3-2-1 strategy.
 
 ---
 

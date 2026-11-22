@@ -1,6 +1,6 @@
 # Handoff — session context
 
-Last updated 2026-11-16. Detailed history: `docs/sessions/`.
+Last updated 2026-11-22. Detailed history: `docs/sessions/`.
 
 **This file is transitional.** Everything durable belongs in `spec.md`, `bom.md`,
 `ROADMAP.md` or an ADR. Fold items in as they close, and delete this file rather
@@ -12,10 +12,12 @@ Proxmox VE **9.2.24**, kernel **7.0.14-26-pve**, hostname `steel`.
 Web UI `https://192.168.1.169:8006` · SSH `ssh root@192.168.1.169`.
 Boot + VMs on the 970 EVO Plus (ext4 + LVM-thin). Kernel parameter
 `nvme_core.default_ps_max_latency_us=0` (APST off, see incident below).
+Last health check 2026-11-16: up 12 days, driver and DKMS intact
+(`docs/sessions/2026-11-16.md`). No server work since then.
 
 ## Current work — model serving, Phase 2 (the container)
 
-Plan: `docs/plans/model-serving.md`. Latest log: `docs/sessions/2026-11-14.md`.
+Plan: `docs/plans/model-serving.md`. Container log: `docs/sessions/2026-11-14.md`.
 
 - [x] **Host driver done** (plan Phase 1): NVIDIA 595.104.02, open kernel modules,
       `.run` + DKMS, verified 2026-11-11 (`docs/sessions/2026-11-11.md`). The installer
@@ -34,13 +36,18 @@ Plan: `docs/plans/model-serving.md`. Latest log: `docs/sessions/2026-11-14.md`.
 
 DKMS built the module for 7.0.14-26 only; the 7.0.2-6 fallback kernel boots
 without the NVIDIA module (recovery only). Run long installs over SSH inside `tmux`.
+⚠️ An idle tmux session `nvidia` may still be running on the host; harmless, close
+with `tmux kill-session -t nvidia`.
 
 ## Storage — drives being swapped
 
 - **Decided: replace the 2x 4TB IronWolfs with 2x 14TB recerts** (Toshiba MG07
   favored). ⚠️ Order status not recorded.
-- IronWolfs act as a **temporary dry-run mirror**; nothing may live only on them.
-  **Wipe, then return by ≈ 2026-11-20.**
+- IronWolfs were to act as a **temporary dry-run mirror** and be wiped and returned
+  by ≈ 2026-11-20. ⚠️ **That date has passed (as of 2026-11-22) and the outcome is
+  not recorded**: returned, or kept? No pool has been created on them, so they hold
+  no data either way. If kept, the plan changes: they can stay as the dry-run pair
+  or become a second, small mirror.
 - When the 14TB drives arrive: burn in (SMART long + full-surface pass) inside their
   return window, then `zpool replace` one IronWolf at a time → `autoexpand`.
 
@@ -56,7 +63,7 @@ rebooting, then reseat the 970, then suspect the PSU. Write-up:
 | # | Item | Notes |
 |---|---|---|
 | 1 | GPU into container 200, then the PSU load test inside it | Current work, above |
-| 2 | Order / burn in the 14TB drives | ⚠️ Order status not recorded. **IronWolf return deadline ≈ 2026-11-20** — wipe first |
+| 2 | Storage: 14TB order and the IronWolfs | ⚠️ Neither the 14TB order nor the IronWolf return (window ended ≈ 2026-11-20) is recorded. Settle both, then update `bom.md` #11/#24, `spec.md` and `ROADMAP.md` |
 | 3 | DHCP reservation for `.169` | On the router — prevents an address conflict |
 | 4 | Security basics | Before real data or Home Assistant: check no port forwards + UPnP off; strong root password in a manager; SSH keys (not set up: the desktop has no key pair yet, `docs/sessions/2026-11-07.md`); web UI 2FA; Proxmox firewall |
 | 5 | Home Assistant VM | `docs/plans/home-assistant.md`; no dependencies |

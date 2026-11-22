@@ -22,7 +22,7 @@ Items marked ⚠️ get verified at the time, not assumed.
   | Proxmox host | ~2 GB |
   | ZFS ARC (cap it) | 4–8 GB |
   | Home Assistant VM | 4 GB |
-  | Model-serving LXC | 8 GB |
+  | Model-serving LXC (ID 200, created) | 8 GB limit |
   | Gateway LXC | 1 GB |
   | Headroom / media / sandbox | rest |
 
@@ -32,7 +32,8 @@ Items marked ⚠️ get verified at the time, not assumed.
 ## Phase B — Create the VM
 
 - [ ] Create VM, **no install media**:
-  - General: name `homeassistant`, ⚠️ pick a VMID (e.g. `100`), **Start at boot** on
+  - General: name `homeassistant`, VMID **100** (VMs in the 100s, containers in the 200s),
+    **Start at boot** on
   - System: machine **q35**, BIOS **OVMF (UEFI)**, EFI disk on `local-lvm`,
     **pre-enrolled keys unchecked** (Secure Boot keys block HAOS from booting)
   - Disks: **delete the default disk**

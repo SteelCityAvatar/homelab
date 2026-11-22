@@ -96,6 +96,9 @@ Dated logs of what was done, what broke, and how it was fixed are in
 - **Read-only root filesystem** — the boot NVMe likely dropped off the bus after
   ~25 h idle; diagnosed from the network layer down to the console, mitigated by
   disabling NVMe APST ([write-up](docs/sessions/2026-11-01.md)).
+- **NVIDIA driver on a 7.0 kernel** — NVIDIA's installer with DKMS, open kernel
+  modules. The first attempt died with a dropped SSH session and left a half-written
+  install record; redone inside `tmux` ([log](docs/sessions/2026-11-11.md)).
 
 ## Repo map
 
