@@ -100,7 +100,11 @@ Required before real data or Home Assistant.
       pending (`docs/runbooks/remote-access.md`)
 - [ ] Router: confirm no port forwards, UPnP off, IPv6 inbound blocked
 - [ ] DHCP reservations: `.169` (host), `.164` (CT 200)
+- [x] Two-factor on the Tailscale login's identity provider; recovery codes offline +
+      password manager — 2026-11-24
 - [ ] Root password in a password manager; web UI two-factor; Proxmox firewall
+- [ ] Later: self-hosted password manager (Vaultwarden) in a container, tailnet-only,
+      once the mirror and an off-server backup exist. Recovery codes stay outside it
 - [ ] BIOS: restore power on AC loss
 
 ---
