@@ -62,8 +62,9 @@ Log: `docs/sessions/2026-11-24.md`. Runbook: `docs/runbooks/remote-access.md`.
 - [x] `steel` joined the tailnet (`tailscale up`, 2026-11-24); `tailscaled` enabled + active
 - [ ] Tailscale admin console: **disable key expiry** for `steel`; two-factor on the
       Tailscale login ← next
-- [ ] Tailscale on the laptop (and phone); test `https://steel:8006` from off the
-      home network (e.g. phone hotspot)
+- [x] Phone on the tailnet; `https://steel:8006` loaded and logged in over **mobile
+      data** (Wi-Fi off), 2026-11-24 — remote path verified
+- [ ] Tailscale on the laptop
 - [ ] Laptop SSH key — steps above; can be done remotely via the web UI shell
 - [ ] BIOS: restore power on AC loss ⚠️ current setting unknown — on site only
       (reboot into BIOS)

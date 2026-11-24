@@ -95,8 +95,9 @@ and falls back cleanly when it is not.
 Required before real data or Home Assistant.
 
 - [x] SSH key login from the desktop, restricted with `from=` — 2026-11-24
-- [ ] Remote access over Tailscale (ADR 0008) — `steel` on the tailnet 2026-11-24;
-      key-expiry off and client devices pending (`docs/runbooks/remote-access.md`)
+- [ ] Remote access over Tailscale (ADR 0008) — `steel` and a phone on the tailnet,
+      web UI verified over mobile data 2026-11-24; key-expiry off and the laptop
+      pending (`docs/runbooks/remote-access.md`)
 - [ ] Router: confirm no port forwards, UPnP off, IPv6 inbound blocked
 - [ ] DHCP reservations: `.169` (host), `.164` (CT 200)
 - [ ] Root password in a password manager; web UI two-factor; Proxmox firewall
