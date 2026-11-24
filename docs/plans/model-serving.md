@@ -41,9 +41,9 @@ build. Items marked ⚠️ get verified at the time, not assumed.
       (`nvidia0`, `nvidiactl`, `nvidia-uvm`, `nvidia-uvm-tools`), but created on demand
       by the first `nvidia-smi`, not at boot; no `nvidia-persistenced`, no NVIDIA
       udev/modules-load rules. Fix: `/etc/modules-load.d/nvidia.conf` (`nvidia`,
-      `nvidia_uvm`) + a udev rule running `nvidia-smi` / `nvidia-modprobe -c0 -u`.
-      Needs a host reboot to verify — **deferred until on site** (ADR 0008
-      consequences). Neither file exists yet (checked 2026-11-24).
+      `nvidia_uvm`) + `/etc/udev/rules.d/70-nvidia.rules` running `nvidia-smi -L` /
+      `nvidia-modprobe -c0 -u` — **written 2026-11-24**, syntax verified. ⚠️ Proving it
+      needs a host reboot — on site only (ADR 0008 consequences).
       Major 195 is fixed; uvm/caps majors are dynamic → pass devices by path
 - PSU load test → moved into Phase 2, before Ollama (2026-11-11)
 - [ ] **Kernel-update caveat:** every new Proxmox kernel needs the module rebuilt.

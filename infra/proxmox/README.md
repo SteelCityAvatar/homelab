@@ -40,7 +40,9 @@ Template: `debian-13-standard_13.6-1_amd64.tar.zst` on `local`.
 - [x] Tailscale installed and `steel` joined the tailnet — 2026-11-24
 - [ ] Tailscale: disable key expiry for `steel`
 - [ ] BIOS: restore power on AC loss
-- [ ] NVIDIA device files at boot (`docs/plans/model-serving.md`) — needs an on-site reboot
+- [ ] NVIDIA device files at boot — `/etc/modules-load.d/nvidia.conf` +
+      `/etc/udev/rules.d/70-nvidia.rules` written 2026-11-24; ⚠️ unproven until an
+      on-site reboot
 
 - [x] Enterprise repos off, no-subscription on, `apt full-upgrade` — 2026-10-31
 - [ ] **Cap ZFS ARC.** Total RAM is 32GB and it is the real ceiling on this

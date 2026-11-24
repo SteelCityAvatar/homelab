@@ -76,8 +76,8 @@ Detailed plan: `docs/plans/model-serving.md`.
 - [x] NVIDIA driver on the Proxmox host — 595.104.02 `.run` with DKMS (ADR 0007),
       verified 2026-11-11
 - [ ] LXC with GPU device passthrough — container 200 `model-serving` created
-      2026-11-14, on the LAN at `.164` (2026-11-22); host device files confirmed but
-      not yet created at boot; passthrough next
+      2026-11-14, on the LAN at `.164` (2026-11-22); host device files confirmed, boot
+      trigger written 2026-11-24 (unproven until a reboot); passthrough next
 - [ ] PSU load test under sustained GPU load, run inside that LXC (`bom.md` #23 c)
 - [ ] Ollama (or llama.cpp) on the 2070 Super
 - [ ] Ollama on the desktop, bound to LAN

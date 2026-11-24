@@ -85,9 +85,10 @@ Plan: `docs/plans/model-serving.md`. Container log: `docs/sessions/2026-11-14.md
 - [x] Host device files present (2026-11-22): `nvidia0`, `nvidiactl`, `nvidia-uvm`,
       `nvidia-uvm-tools`, mode 666 — but created by the first `nvidia-smi`, **not at
       boot**. Nothing NVIDIA in `/etc/modules-load.d/` or `/etc/udev/rules.d/`
-- [ ] Boot trigger: `/etc/modules-load.d/nvidia.conf` (`nvidia`, `nvidia_uvm`) +
-      `/etc/udev/rules.d/70-nvidia.rules`. Neither exists yet (checked 2026-11-24).
-      Writing them is safe anytime; verifying needs a reboot → **on site only**
+- [x] Boot trigger written 2026-11-24: `/etc/modules-load.d/nvidia.conf` (`nvidia`,
+      `nvidia_uvm`) + `/etc/udev/rules.d/70-nvidia.rules` (`udevadm verify` passed)
+- [ ] ⚠️ Prove it: after the next host reboot (**on site only**), `ls -l /dev/nvidia*`
+      shows boot-time timestamps without running `nvidia-smi` first
 - [ ] CT 200 has no `onboot` — set it once GPU passthrough works
 - [ ] **Pass the GPU into container 200**; install the driver's user-space half
       (`--no-kernel-module`); `nvidia-smi` inside

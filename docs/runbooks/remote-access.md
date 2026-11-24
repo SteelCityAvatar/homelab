@@ -34,5 +34,5 @@ so a dropped connection doesn't kill it.
 | `steel` offline in Tailscale, web UI unreachable | Host down, power cut, or ISP outage | Nothing remote can fix it. With "restore on AC power loss" set, a power cut self-recovers. Wait, or ask someone on site to press power |
 | Tailscale offline but nothing else changed | Node key expired, or `tailscaled` stopped | Key expiry should be disabled for `steel`; check the admin console |
 | SSH "Permission denied (publickey)" | This device's key isn't authorized, or connecting from outside `from=` ranges | Use the web UI shell instead; add the key from there |
-| Container has no GPU after an unexpected host restart | `/dev/nvidia*` are created on demand, not at boot (until the boot trigger is in place) | Run `nvidia-smi` once on the host, then restart CT 200 |
+| Container has no GPU after an unexpected host restart | The boot trigger (`70-nvidia.rules`) didn't fire — unproven as of 2026-11-24 | Run `nvidia-smi` once on the host, then restart CT 200 |
 | Root filesystem read-only (writes fail everywhere) | NVMe dropout — see the 2026-11-01 incident | Don't reboot remotely if avoidable; capture `dmesg` first. Needs on-site recovery |
