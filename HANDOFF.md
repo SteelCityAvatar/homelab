@@ -60,8 +60,11 @@ Log: `docs/sessions/2026-11-24.md`. Runbook: `docs/runbooks/remote-access.md`.
       `from="192.168.1.0/24,100.64.0.0/10"`; passwordless login verified
 - [x] Tailscale 1.104.7 installed on `steel`; `tailscaled` enabled at boot
 - [x] `steel` joined the tailnet (`tailscale up`, 2026-11-24); `tailscaled` enabled + active
-- [ ] Tailscale admin console: **disable key expiry** for `steel`; two-factor on the
-      Tailscale login ← next
+- [ ] Two-factor on the identity provider behind the Tailscale login (Tailscale has
+      no password of its own) ← next
+- [ ] **Disable key expiry** for `steel` in the admin console — deferred. ⚠️ Without
+      it `steel` drops off the tailnet ≈ **2027-05-23** (180 days after 2026-11-24;
+      exact date on the admin console's Machines page)
 - [x] Phone on the tailnet; `https://steel:8006` loaded and logged in over **mobile
       data** (Wi-Fi off), 2026-11-24 — remote path verified
 - [ ] Tailscale on the laptop
