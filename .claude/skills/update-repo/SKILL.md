@@ -54,6 +54,10 @@ component names, addresses, versions. Every hit is a candidate edit.
 - Rebuild the phone copy: `python -I docs/notes/build_phone_page.py docs/notes <scratchpad>/notes-phone.html`,
   check the output has no `>Other<` group, then republish to the artifact URL given in
   `docs/notes/README.md` (read the artifact first if this session hasn't).
+- The script writes a complete HTML document. A publish tool that wraps pages in its
+  own skeleton (the `Artifact` tool's publish) needs the output built with
+  `--fragment`; one that serves the file as-is (`publish_files`) doesn't. Afterwards,
+  read the artifact's first lines: exactly one doctype, at the very top.
 
 ## 5. Privacy pass (the repo is public)
 
