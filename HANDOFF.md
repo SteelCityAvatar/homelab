@@ -71,7 +71,9 @@ Log: `docs/sessions/2026-11-24.md`. Runbook: `docs/runbooks/remote-access.md`.
 - [ ] Tailscale on the laptop ← next
 - [ ] Laptop SSH key — steps above; can be done remotely via the web UI shell
 - [ ] BIOS: restore power on AC loss ⚠️ current setting unknown — on site only
-      (reboot into BIOS)
+      (reboot into BIOS; the board has no remote management). Deferred: until then a
+      power cut leaves `steel` off until someone is on site. Do it on the same reboot
+      that proves the NVIDIA boot trigger
 
 Remote rules and recovery: `docs/runbooks/remote-access.md`.
 
