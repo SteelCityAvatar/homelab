@@ -64,7 +64,8 @@ Items marked ⚠️ get verified at the time, not assumed.
 
 - [ ] Let auto-discovery find network devices (TV, AVR, Chromecasts, etc.)
 - [ ] ⚠️ Zigbee / Z-Wave / Thread later: needs a USB radio passed through to the VM
-- [ ] Remote access: **Tailscale add-on** — never port-forward `:8123`
+- [ ] Remote access: **Tailscale add-on** (or `steel` as a Tailscale subnet router) —
+      never port-forward `:8123` (ADR 0008)
 
 ## Phase F — Later (ROADMAP Phase 3)
 

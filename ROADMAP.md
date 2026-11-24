@@ -76,7 +76,8 @@ Detailed plan: `docs/plans/model-serving.md`.
 - [x] NVIDIA driver on the Proxmox host — 595.104.02 `.run` with DKMS (ADR 0007),
       verified 2026-11-11
 - [ ] LXC with GPU device passthrough — container 200 `model-serving` created
-      2026-11-14; passthrough next
+      2026-11-14, on the LAN at `.164` (2026-11-22); host device files confirmed but
+      not yet created at boot; passthrough next
 - [ ] PSU load test under sustained GPU load, run inside that LXC (`bom.md` #23 c)
 - [ ] Ollama (or llama.cpp) on the 2070 Super
 - [ ] Ollama on the desktop, bound to LAN
@@ -86,6 +87,20 @@ Detailed plan: `docs/plans/model-serving.md`.
 
 **Exit criteria:** a request routes locally, escalates to the 4090 when free,
 and falls back cleanly when it is not.
+
+---
+
+## Access and security — runs alongside every phase
+
+Required before real data or Home Assistant.
+
+- [x] SSH key login from the desktop, restricted with `from=` — 2026-11-24
+- [ ] Remote access over Tailscale (ADR 0008) — installed on `steel` 2026-11-24;
+      login, key-expiry off, and client devices pending
+- [ ] Router: confirm no port forwards, UPnP off, IPv6 inbound blocked
+- [ ] DHCP reservations: `.169` (host), `.164` (CT 200)
+- [ ] Root password in a password manager; web UI two-factor; Proxmox firewall
+- [ ] BIOS: restore power on AC loss
 
 ---
 

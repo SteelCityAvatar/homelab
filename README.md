@@ -70,6 +70,9 @@ Full detail in [`docs/architecture.md`](docs/architecture.md).
 - **One GPU on a current driver.** A Turing + Pascal pair wouldn't pool VRAM, and
   the Pascal card would pin the driver to a legacy branch, so the server runs the
   2070 Super alone ([ADR 0007](docs/decisions/0007-nvidia-driver-run-installer.md)).
+- **Nothing exposed to the internet.** No port forwards; remote administration goes
+  over a Tailscale VPN, with SSH keys limited to the LAN and the tailnet
+  ([ADR 0008](docs/decisions/0008-remote-access-tailscale.md)).
 - **Decisions are written down.** Every significant choice has an ADR in
   [`docs/decisions/`](docs/decisions/). Anything unverified is marked `TBD` / ⚠️.
 

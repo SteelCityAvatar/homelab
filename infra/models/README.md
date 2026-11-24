@@ -20,6 +20,7 @@ embeddings is optional later.
 | CUDA | 13.2 is the newest this driver supports; container CUDA libraries must not be newer |
 | Kernel module | Open (`Dual MIT/GPL`); uses GSP firmware `gsp_tu10x.bin` |
 | Containers | Same version, installed with `--no-kernel-module` |
+| Device files | `/dev/nvidia0`, `nvidiactl` (major 195, fixed), `nvidia-uvm`, `nvidia-uvm-tools` (major dynamic), mode 666. Created on first `nvidia-smi`, not at boot — boot trigger pending |
 
 ## Files
 

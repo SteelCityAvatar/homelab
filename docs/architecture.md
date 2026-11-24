@@ -118,3 +118,15 @@ system stops escalating rather than hanging. Degradation, not breakage.
 Onboard is 1GbE (Realtek RTL8111H). For bulk transfers between nodes, add a
 2.5GbE NIC to each machine and run them **directly to each other** on a separate
 subnet — no switch purchase needed. Normal LAN traffic keeps using gigabit.
+
+### Remote access (ADR 0008)
+
+No inbound port forwards. The Proxmox host and each client device run **Tailscale**;
+remote administration goes over the tailnet (`ssh root@steel`, `https://steel:8006`).
+SSH logins use per-device keys restricted to the LAN and the Tailscale range.
+
+```
+Laptop / phone (anywhere) ──Tailscale (WireGuard)──► steel  (100.x, MagicDNS "steel")
+Desktop (home LAN)        ──────── LAN ────────────► steel  192.168.1.169
+                                                     └─ CT 200 model-serving 192.168.1.164
+```

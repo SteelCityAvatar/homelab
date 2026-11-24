@@ -1,6 +1,6 @@
 # Handoff — session context
 
-Last updated 2026-11-22. Detailed history: `docs/sessions/`.
+Last updated 2026-11-24. Detailed history: `docs/sessions/`.
 
 **This file is transitional.** Everything durable belongs in `spec.md`, `bom.md`,
 `ROADMAP.md` or an ADR. Fold items in as they close, and delete this file rather
@@ -9,13 +9,35 @@ than let it become a second source of truth.
 ## Server at a glance
 
 Proxmox VE **9.2.24**, kernel **7.0.14-26-pve**, hostname `steel`.
-Web UI `https://192.168.1.169:8006` · SSH `ssh root@192.168.1.169`.
-Boot + VMs on the 970 EVO Plus (ext4 + LVM-thin). Kernel parameter
+Web UI `https://192.168.1.169:8006` · SSH `ssh root@192.168.1.169` (desktop key,
+2026-11-24 — Claude Code can run commands with `ssh -o BatchMode=yes root@192.168.1.169
+"<cmd>"`). Boot + VMs on the 970 EVO Plus (ext4 + LVM-thin). Kernel parameter
 `nvme_core.default_ps_max_latency_us=0` (APST off, see incident below).
-Last health check 2026-11-16: up 12 days, driver and DKMS intact
-(`docs/sessions/2026-11-16.md`). No server work since then.
+Last checked 2026-11-24: up 20 days, load 0.04.
 
-## Current work — model serving, Phase 2 (the container)
+## Current work — remote access (ADR 0008)
+
+Log: `docs/sessions/2026-11-24.md`. Notes: `docs/notes/remote-access.md`.
+
+- [x] SSH key pair on the desktop; public key in `authorized_keys` with
+      `from="192.168.1.0/24,100.64.0.0/10"`; passwordless login verified
+- [x] Tailscale 1.104.7 installed on `steel`; `tailscaled` enabled at boot
+- [ ] `tailscale up` → approve in the browser → `tailscale ip -4` ← next
+- [ ] Tailscale admin console: **disable key expiry** for `steel`; two-factor on the
+      Tailscale login
+- [ ] Tailscale on the laptop (and phone); test `ssh root@steel` and
+      `https://steel:8006` from off the home network (e.g. phone hotspot)
+- [ ] Laptop gets **its own** SSH key, added the same way
+- [ ] BIOS: restore power on AC loss ⚠️ current setting unknown — needs on-site access
+
+**When working remotely:** no host reboots, no load test. Container work (GPU passthrough,
+`nvidia-smi` inside) is fine. If the host restarts unexpectedly, run `nvidia-smi`
+once to recreate `/dev/nvidia*` before starting GPU work in the container.
+
+Later: run the Unique Profile MCP server on `steel` over SSH so desktop and laptop
+share one profile (not started).
+
+## Model serving, Phase 2 (the container) — paused for remote access
 
 Plan: `docs/plans/model-serving.md`. Container log: `docs/sessions/2026-11-14.md`.
 
@@ -25,10 +47,14 @@ Plan: `docs/plans/model-serving.md`. Container log: `docs/sessions/2026-11-14.md
 - [x] Container **200 `model-serving`** created and started 2026-11-14: Debian 13,
       unprivileged, nesting, 4 cores, 8 GB, 100 GB thin on `local-lvm`, DHCP.
       Enter with `pct enter 200` (no root password set)
-- [ ] ⚠️ Confirm the container has a `192.168.1.x` address:
-      `pct exec 200 -- ip -br a` ← next
-- [ ] `/dev/nvidia-uvm` exists on the host ⚠️ (may need `nvidia-modprobe -u` or
-      `nvidia-persistenced` at boot)
+- [x] Container on the LAN: `192.168.1.164/24` via DHCP (2026-11-22). ⚠️ Not
+      reserved; reserve it on the router alongside `.169` before Ollama goes live
+- [x] Host device files present (2026-11-22): `nvidia0`, `nvidiactl`, `nvidia-uvm`,
+      `nvidia-uvm-tools`, mode 666 — but created by the first `nvidia-smi`, **not at
+      boot**. Nothing NVIDIA in `/etc/modules-load.d/` or `/etc/udev/rules.d/`
+- [ ] Boot trigger: `/etc/modules-load.d/nvidia.conf` (`nvidia`, `nvidia_uvm`) + udev
+      rule. ⚠️ Whether the modules-load file was written is unconfirmed — check with
+      `cat /etc/modules-load.d/nvidia.conf`. Verifying needs a reboot → **on site only**
 - [ ] **Pass the GPU into container 200**; install the driver's user-space half
       (`--no-kernel-module`); `nvidia-smi` inside
 - [ ] **PSU load test inside the LXC** (~30 min CUDA stress) — gates Ollama
@@ -63,10 +89,11 @@ rebooting, then reseat the 970, then suspect the PSU. Write-up:
 
 | # | Item | Notes |
 |---|---|---|
-| 1 | GPU into container 200, then the PSU load test inside it | Current work, above |
+| 0 | Remote access | Current work, above (ADR 0008) |
+| 1 | GPU into container 200, then the PSU load test inside it | Passthrough can be done remotely; the load test and boot-trigger reboot need someone on site |
 | 2 | Storage | IronWolfs = Vault mirror (decided 2026-11-22); 14TB pair not ordered. Measure the irreplaceable data on the desktop, then burn in the IronWolfs |
-| 3 | DHCP reservation for `.169` | On the router — prevents an address conflict |
-| 4 | Security basics | Before real data or Home Assistant: check no port forwards + UPnP off; strong root password in a manager; SSH keys (not set up: the desktop has no key pair yet, `docs/sessions/2026-11-07.md`); web UI 2FA; Proxmox firewall |
+| 3 | DHCP reservations for `.169` (host) and `.164` (CT 200) | On the router — prevents an address conflict; the model endpoint needs `.164` stable |
+| 4 | Security basics | Before real data or Home Assistant: check no port forwards + UPnP off; **IPv6 inbound blocked on the router** (CT 200 has a global IPv6 address); strong root password in a manager; web UI 2FA; Proxmox firewall. SSH keys done 2026-11-24 |
 | 5 | Home Assistant VM | `docs/plans/home-assistant.md`; no dependencies |
 | 6 | Which room, and the cable route | ADR 0005 left both TBD |
 | 7 | Physical bay recount | Spec says 4; confirm when installing the 14TB drives |

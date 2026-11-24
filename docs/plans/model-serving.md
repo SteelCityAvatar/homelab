@@ -37,8 +37,14 @@ build. Items marked ⚠️ get verified at the time, not assumed.
       (2026-11-09) was killed by a dropped SSH session: run installers inside `tmux`
 - [x] Verify: `nvidia-smi` → RTX 2070 SUPER, 595.104.02, CUDA 13.2; idle P8, 16 W,
       28 °C (2026-11-11). `dkms status` → installed for 7.0.14-26-pve
-- [ ] Make sure `/dev/nvidia-uvm*` exist at boot (⚠️ may need `nvidia-persistenced`
-      or a udev/modprobe rule)
+- [ ] Make sure `/dev/nvidia*` exist at boot. 2026-11-22: all four present
+      (`nvidia0`, `nvidiactl`, `nvidia-uvm`, `nvidia-uvm-tools`), but created on demand
+      by the first `nvidia-smi`, not at boot; no `nvidia-persistenced`, no NVIDIA
+      udev/modules-load rules. Fix: `/etc/modules-load.d/nvidia.conf` (`nvidia`,
+      `nvidia_uvm`) + a udev rule running `nvidia-smi` / `nvidia-modprobe -c0 -u`.
+      Needs a host reboot to verify — **deferred until on site** (ADR 0008
+      consequences). ⚠️ Whether the modules-load file was written is unconfirmed.
+      Major 195 is fixed; uvm/caps majors are dynamic → pass devices by path
 - PSU load test → moved into Phase 2, before Ollama (2026-11-11)
 - [ ] **Kernel-update caveat:** every new Proxmox kernel needs the module rebuilt.
       DKMS automates it; the `.run` installer with DKMS does too. Test once:
@@ -48,7 +54,8 @@ build. Items marked ⚠️ get verified at the time, not assumed.
 
 - [x] Create an **unprivileged** LXC from the Debian 13 template — ID **200**,
       `model-serving`: 4 cores, 8 GB RAM, 100 GB thin disk, nesting on (2026-11-14).
-      ⚠️ IPv4 DHCP lease not yet confirmed
+      On the LAN at `192.168.1.164/24` by DHCP (2026-11-22). ⚠️ Not reserved — reserve
+      it on the router before Ollama goes live
 - [ ] Pass the GPU devices in: Resources → Add → **Device Passthrough**
       (`/dev/nvidia0`, `/dev/nvidiactl`, `/dev/nvidia-uvm`, `/dev/nvidia-uvm-tools`)
 - [ ] Install the **same driver version** inside the container, userspace only

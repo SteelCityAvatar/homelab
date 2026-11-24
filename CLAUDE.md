@@ -14,11 +14,15 @@ that Node A can stay a gaming/theater machine.
 ## Current status
 
 **Phase 1 (storage) and Phase 2 (model serving) in progress.** Proxmox VE 9.2.24 on
-the 970, web UI `https://192.168.1.169:8006`, SSH `root@192.168.1.169`. The NVIDIA
-driver is installed (595.104.02, verified) and the model-serving container (ID 200)
-exists; GPU passthrough is next. Data drives: the 2x 4TB IronWolfs are kept; 2x 14TB
-recerts are a later purchase, not ordered (plan in `HANDOFF.md`).
-**Read `HANDOFF.md` first** for the current step and open items.
+the 970, web UI `https://192.168.1.169:8006`, SSH `root@192.168.1.169` (key auth from
+the desktop: Claude Code can run server commands as
+`ssh -o BatchMode=yes root@192.168.1.169 "<cmd>"`, each one approved). Tailscale on
+the host for remote access (ADR 0008). The NVIDIA driver is installed (595.104.02,
+verified) and the model-serving container (ID 200, `192.168.1.164`) exists; GPU
+passthrough is next. Data drives: the 2x 4TB IronWolfs are kept; 2x 14TB recerts are
+a later purchase, not ordered (plan in `HANDOFF.md`).
+**Read `HANDOFF.md` first** for the current step and open items. To bring the repo
+up to date after work, use the `update-repo` skill.
 
 ## Hard constraints (do not design around these being flexible)
 
@@ -46,6 +50,7 @@ information. Summary:
 - Server outside the living room, wired ethernet (0005)
 - NVMe swapped between machines: 9100 Pro to desktop, 970 Evo Plus to server (0006)
 - NVIDIA driver from NVIDIA's `.run` installer with DKMS; 2070 Super only (0007)
+- Remote access through Tailscale; no inbound port forwards (0008)
 
 ## Conventions
 
