@@ -43,7 +43,7 @@ build. Items marked ⚠️ get verified at the time, not assumed.
       udev/modules-load rules. Fix: `/etc/modules-load.d/nvidia.conf` (`nvidia`,
       `nvidia_uvm`) + a udev rule running `nvidia-smi` / `nvidia-modprobe -c0 -u`.
       Needs a host reboot to verify — **deferred until on site** (ADR 0008
-      consequences). ⚠️ Whether the modules-load file was written is unconfirmed.
+      consequences). Neither file exists yet (checked 2026-11-24).
       Major 195 is fixed; uvm/caps majors are dynamic → pass devices by path
 - PSU load test → moved into Phase 2, before Ollama (2026-11-11)
 - [ ] **Kernel-update caveat:** every new Proxmox kernel needs the module rebuilt.

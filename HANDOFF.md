@@ -32,9 +32,15 @@ anything destructive, mark unverified items ⚠️).
    (`>>`, never `>`). Test: `ssh -o BatchMode=yes root@steel hostname`.
 2. **Claude Code on the laptop:** clone the repo; it can then run server commands
    over that key, same as the desktop.
-3. **Unique Profile on `steel`** (optional, later): run the MCP server on the host
+3. **Ops container with Claude Code** (optional; container work is remote-safe):
+   new unprivileged LXC (e.g. CT 202 `ops`) holding Claude Code, a repo clone and
+   `tmux`. Its own SSH key to the host, `from=` its own address only; a GitHub
+   **deploy key** scoped to this repo for commits. Not on the host itself: an agent
+   there is root on the hypervisor, and Proxmox hosts stay minimal. Approval prompts
+   stay on. Reach it by SSH over Tailscale + `tmux attach`.
+4. **Unique Profile on `steel`** (optional, later): run the MCP server on the host
    over SSH so desktop and laptop share one profile.
-4. Then resume model serving: GPU passthrough into CT 200 is remote-safe; the PSU
+5. Then resume model serving: GPU passthrough into CT 200 is remote-safe; the PSU
    load test and the NVIDIA boot-trigger reboot are on-site only.
 
 ## Server at a glance
@@ -79,9 +85,10 @@ Plan: `docs/plans/model-serving.md`. Container log: `docs/sessions/2026-11-14.md
 - [x] Host device files present (2026-11-22): `nvidia0`, `nvidiactl`, `nvidia-uvm`,
       `nvidia-uvm-tools`, mode 666 — but created by the first `nvidia-smi`, **not at
       boot**. Nothing NVIDIA in `/etc/modules-load.d/` or `/etc/udev/rules.d/`
-- [ ] Boot trigger: `/etc/modules-load.d/nvidia.conf` (`nvidia`, `nvidia_uvm`) + udev
-      rule. ⚠️ Whether the modules-load file was written is unconfirmed — check with
-      `cat /etc/modules-load.d/nvidia.conf`. Verifying needs a reboot → **on site only**
+- [ ] Boot trigger: `/etc/modules-load.d/nvidia.conf` (`nvidia`, `nvidia_uvm`) +
+      `/etc/udev/rules.d/70-nvidia.rules`. Neither exists yet (checked 2026-11-24).
+      Writing them is safe anytime; verifying needs a reboot → **on site only**
+- [ ] CT 200 has no `onboot` — set it once GPU passthrough works
 - [ ] **Pass the GPU into container 200**; install the driver's user-space half
       (`--no-kernel-module`); `nvidia-smi` inside
 - [ ] **PSU load test inside the LXC** (~30 min CUDA stress) — gates Ollama
