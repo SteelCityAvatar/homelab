@@ -19,7 +19,7 @@ M2_1 NVMe. This slot costs zero SATA ports on the MPG Z390 Gaming Plus — see
 | Timezone | America/New_York |
 | Web UI | `https://192.168.1.169:8006`, user `root` |
 | SSH | `ssh root@192.168.1.169` — works when the web UI doesn't. Key auth from the desktop (ed25519, `from=` LAN + Tailscale range), 2026-11-24 |
-| Remote access | Tailscale 1.104.7 (`tailscaled` enabled at boot), 2026-11-24 — ADR 0008. ⚠️ Tailnet login and key-expiry setting pending |
+| Remote access | Tailscale 1.104.7, on the tailnet as `steel` (`tailscaled` enabled at boot), 2026-11-24 — ADR 0008, `docs/runbooks/remote-access.md`. ⚠️ Key expiry not yet disabled |
 | Kernel params | `nvme_core.default_ps_max_latency_us=0` — disables Samsung NVMe APST deep sleep after a read-only-root incident (2026-11-01, `docs/sessions/2026-11-01.md`) |
 
 ## Guests
@@ -37,7 +37,8 @@ Template: `debian-13-standard_13.6-1_amd64.tar.zst` on `local`.
 - [x] Log in to the web UI from the desktop — 2026-10-29
 - [ ] Reserve 192.168.1.169 (host) and 192.168.1.164 (CT 200) in the router
 - [x] SSH key login from the desktop — 2026-11-24
-- [ ] Tailscale: `tailscale up`, then disable key expiry for `steel` (installed 2026-11-24)
+- [x] Tailscale installed and `steel` joined the tailnet — 2026-11-24
+- [ ] Tailscale: disable key expiry for `steel`
 - [ ] BIOS: restore power on AC loss
 - [ ] NVIDIA device files at boot (`docs/plans/model-serving.md`) — needs an on-site reboot
 

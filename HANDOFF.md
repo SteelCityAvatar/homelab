@@ -6,6 +6,37 @@ Last updated 2026-11-24. Detailed history: `docs/sessions/`.
 `ROADMAP.md` or an ADR. Fold items in as they close, and delete this file rather
 than let it become a second source of truth.
 
+## Starting a remote session (no repo checkout, e.g. a chat assistant)
+
+Repo: https://github.com/SteelCityAvatar/homelab — read this file, then
+`docs/runbooks/remote-access.md` (connect, safe vs on-site-only, recovery) and
+`CLAUDE.md` (constraints and working style: one step at a time, confirm before
+anything destructive, mark unverified items ⚠️).
+
+- The operator connects over **Tailscale**; the server is `steel` on the tailnet.
+  Web UI `https://steel:8006`; its **>_ Shell** gives a root shell from any browser,
+  including a phone.
+- An assistant without SSH can't run commands: give one command at a time, wait for
+  the pasted output.
+- **Keep a command log** in the reply (exact command, read-only vs destructive,
+  outcome). It gets copied into `docs/sessions/<date>.md` when back at a repo checkout.
+- **No host reboots and no load test remotely** (runbook table).
+
+### Remote setup still to do (can be finished remotely)
+
+1. **Laptop SSH key** (laptop on Tailscale):
+   `ssh-keygen -t ed25519 -C "laptop-to-steel"` on the laptop, then add the
+   `.pub` line on `steel` through the web UI shell, with the same limit as the
+   desktop key:
+   `echo 'from="192.168.1.0/24,100.64.0.0/10" <contents of id_ed25519.pub>' >> /root/.ssh/authorized_keys`
+   (`>>`, never `>`). Test: `ssh -o BatchMode=yes root@steel hostname`.
+2. **Claude Code on the laptop:** clone the repo; it can then run server commands
+   over that key, same as the desktop.
+3. **Unique Profile on `steel`** (optional, later): run the MCP server on the host
+   over SSH so desktop and laptop share one profile.
+4. Then resume model serving: GPU passthrough into CT 200 is remote-safe; the PSU
+   load test and the NVIDIA boot-trigger reboot are on-site only.
+
 ## Server at a glance
 
 Proxmox VE **9.2.24**, kernel **7.0.14-26-pve**, hostname `steel`.
@@ -17,25 +48,21 @@ Last checked 2026-11-24: up 20 days, load 0.04.
 
 ## Current work — remote access (ADR 0008)
 
-Log: `docs/sessions/2026-11-24.md`. Notes: `docs/notes/remote-access.md`.
+Log: `docs/sessions/2026-11-24.md`. Runbook: `docs/runbooks/remote-access.md`.
 
 - [x] SSH key pair on the desktop; public key in `authorized_keys` with
       `from="192.168.1.0/24,100.64.0.0/10"`; passwordless login verified
 - [x] Tailscale 1.104.7 installed on `steel`; `tailscaled` enabled at boot
-- [ ] `tailscale up` → approve in the browser → `tailscale ip -4` ← next
+- [x] `steel` joined the tailnet (`tailscale up`, 2026-11-24); `tailscaled` enabled + active
 - [ ] Tailscale admin console: **disable key expiry** for `steel`; two-factor on the
-      Tailscale login
-- [ ] Tailscale on the laptop (and phone); test `ssh root@steel` and
-      `https://steel:8006` from off the home network (e.g. phone hotspot)
-- [ ] Laptop gets **its own** SSH key, added the same way
-- [ ] BIOS: restore power on AC loss ⚠️ current setting unknown — needs on-site access
+      Tailscale login ← next
+- [ ] Tailscale on the laptop (and phone); test `https://steel:8006` from off the
+      home network (e.g. phone hotspot)
+- [ ] Laptop SSH key — steps above; can be done remotely via the web UI shell
+- [ ] BIOS: restore power on AC loss ⚠️ current setting unknown — on site only
+      (reboot into BIOS)
 
-**When working remotely:** no host reboots, no load test. Container work (GPU passthrough,
-`nvidia-smi` inside) is fine. If the host restarts unexpectedly, run `nvidia-smi`
-once to recreate `/dev/nvidia*` before starting GPU work in the container.
-
-Later: run the Unique Profile MCP server on `steel` over SSH so desktop and laptop
-share one profile (not started).
+Remote rules and recovery: `docs/runbooks/remote-access.md`.
 
 ## Model serving, Phase 2 (the container) — paused for remote access
 
